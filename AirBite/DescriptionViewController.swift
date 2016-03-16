@@ -28,12 +28,24 @@ class DescriptionViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         if (segue.identifier == "paymentSegue") {
             let svc = segue.destinationViewController as! PaymentViewController
+            
             svc.itemName = itemName
             svc.itemPrice = itemPrice
             //svc.menuItemPricesForPayment = priceItem
             //svc.menuItemPrices = menuItemPrice
             
         }
+        if (segue.identifier == "customPaymentSegue") {
+            let svc2 = segue.destinationViewController as! CustomPaymentViewController
+            
+            svc2.itemName = itemName
+            svc2.itemPrice = itemPrice
+            //svc.menuItemPricesForPayment = priceItem
+            //svc.menuItemPrices = menuItemPrice
+            
+        }
+        
+        
     }
     
     
