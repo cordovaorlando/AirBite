@@ -10,5 +10,6 @@
 //#define AirBite_Bridging_Header_h
 #import <Stripe/Stripe.h>
 #import <AFNetworking/AFNetworking.h>
+#import <Stripe/Stripe+ApplePay.h>
 
 //#endif /* AirBite_Bridging_Header_h */

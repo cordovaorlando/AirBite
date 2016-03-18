@@ -14,6 +14,68 @@ extension PaymentViewController: PKPaymentAuthorizationViewControllerDelegate {
     //Delegate function for when the user finishes authorizing the purchase
     func paymentAuthorizationViewController(controller: PKPaymentAuthorizationViewController, didAuthorizePayment payment: PKPayment, completion: ((PKPaymentAuthorizationStatus) -> Void)) {
         completion(PKPaymentAuthorizationStatus.Success)
+        // 1
+        //let shippingAddress = self.createShippingAddressFromRef(payment.shippingAddress)
+        
+        // 2
+        Stripe.setDefaultPublishableKey("pk_test_Nxy4IoZXCoOVppUkWdFH7eOv")  // Replace With Your Own Key!
+        
+        // 3
+        STPAPIClient.sharedClient().createTokenWithPayment(payment) {
+            (token, error) -> Void in
+            
+            if (error != nil) {
+                print(error)
+                completion(PKPaymentAuthorizationStatus.Failure)
+                return
+            }
+            
+            // 4
+            //let shippingAddress = self.createShippingAddressFromRef(payment.shippingAddress)
+            
+            // 5
+            let url = NSURL(string: "http://10.0.0.4:5000/pay")  // Replace with computers local IP Address!
+            let request = NSMutableURLRequest(URL: url!)
+            request.HTTPMethod = "POST"
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.setValue("application/json", forHTTPHeaderField: "Accept")
+            
+            // 6
+            
+            
+            let body = ["stripeToken": token!.tokenId,
+                "amount": 200.00,
+                "description": "Sample Title"//,
+                //"shipping": [
+                //  "city": shippingAddress.City!,
+                //"state": shippingAddress.State!,
+                // "zip": shippingAddress.Zip!,
+                //"firstName": shippingAddress.FirstName!,
+                // "lastName": shippingAddress.LastName!]
+                
+                //decimalNumberByMultiplyingBy(NSDecimalNumber(string: "100"))
+            ]
+            
+            // var error: NSError?
+            //request.HTTPBody = NSJSONSerialization.dataWithJSONObject(body, options: NSJSONWritingOptions(), error: &error)
+            
+            do {
+                request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(body, options: NSJSONWritingOptions())
+            } catch let error as NSError {
+                print("An error occurred: \(error)")
+            }
+            
+            
+            
+            // 7
+            NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) { (response, data, error) -> Void in
+                if (error != nil) {
+                    completion(PKPaymentAuthorizationStatus.Failure)
+                } else {
+                    completion(PKPaymentAuthorizationStatus.Success)
+                }
+            }
+        }
     }
     
     //Delegate function for when the animations have all finished in the PKPaymentAuthorizationViewController
@@ -37,7 +99,7 @@ class PaymentViewController: UIViewController {
     
     //Set some important stuff here
     let SupportedPaymentNetworks = [PKPaymentNetworkVisa, PKPaymentNetworkMasterCard, PKPaymentNetworkAmex]
-    let ApplePayFruitsMerchantID = "merchant.com.mayuko.ApplePayFruit" // Fill in your merchant ID here!
+    let ApplePayFruitsMerchantID = "merchant.com.LSUS.AirBite" // Fill in your merchant ID here!
     
     /*var fruit: Fruit! {
         didSet {
