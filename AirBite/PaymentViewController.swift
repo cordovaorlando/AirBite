@@ -34,7 +34,8 @@ extension PaymentViewController: PKPaymentAuthorizationViewControllerDelegate {
             //let shippingAddress = self.createShippingAddressFromRef(payment.shippingAddress)
             
             // 5
-            let url = NSURL(string: "http://10.0.0.4:5000/pay")  // Replace with computers local IP Address!
+            //let url = NSURL(string: "http://10.0.0.4:5000/pay")  // Replace with computers local IP Address!
+            let url = NSURL(string: "http://73.183.220.171:5000/pay")
             let request = NSMutableURLRequest(URL: url!)
             request.HTTPMethod = "POST"
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -87,15 +88,25 @@ extension PaymentViewController: PKPaymentAuthorizationViewControllerDelegate {
 class PaymentViewController: UIViewController {
     
     @IBOutlet weak var fruitPriceLabel: UILabel!
-    @IBOutlet weak var fruitTitleLabel: UILabel!
+    //@IBOutlet weak var fruitTitleLabel: UILabel!
     @IBOutlet weak var fruitImage: UIImageView!
     @IBOutlet weak var applePayButton: UIButton!
+    
+    
+    
+    //@IBOutlet weak var indvPriceItemLabel: UILabel!
+    
+    
+    @IBOutlet weak var fruitTitleLabel: UILabel!
     
     //var menuItemsForPayment: [String] = []
     //var menuItemPricesForPayment: [AnyObject] = []
     
     var itemName = String()
     var itemPrice = String()
+    
+    var itemsInCart: [String] = []
+    var priceOfItemsInCart: [String] = []
     
     //Set some important stuff here
     let SupportedPaymentNetworks = [PKPaymentNetworkVisa, PKPaymentNetworkMasterCard, PKPaymentNetworkAmex]
@@ -116,12 +127,25 @@ class PaymentViewController: UIViewController {
         
         //self.title = fruit.title
         self.title = "Mister G's Restaurant"
-        //self.fruitPriceLabel.text = "$" + (fruit.priceString as String)//
-        self.fruitPriceLabel.text = "$" + itemPrice
         //self.fruitImage.image = fruit.image
-        self.fruitTitleLabel.text = itemName
+        
+        // set up the label that holds the details for each indiviudual item in teh cart
+        var cartItems = ""
+        for var i = 0; i <= itemsInCart.count - 1; i++ {
+            let individualItem = "\(itemsInCart[i]): $\(priceOfItemsInCart[i]) \r\n \r\n"
+            cartItems += individualItem
+        }
+        self.fruitTitleLabel.text = cartItems
+        
+        // set up the total price
+        var priceOfItems = Float()
+        for pItem in priceOfItemsInCart {
+            let price = (pItem as NSString).floatValue
+            priceOfItems += price
+        }
+        let stringPriceItem = String(format: "%.2f", priceOfItems)
+        self.fruitPriceLabel.text = "Order Total: $\(stringPriceItem)"
     }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()

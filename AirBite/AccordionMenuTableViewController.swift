@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AccordionMenuTableViewController: UITableViewController {
+class AccordionMenuTableViewController: UITableViewController, AddToCartDelegate {
     
     
     var descriptionString = String()
@@ -18,6 +18,10 @@ class AccordionMenuTableViewController: UITableViewController {
     var wholeMenuArray: [AnyObject!] = []
     var menuSectionItems = [String]()
     var menuItems = [[String]]()
+    
+    var addToCartArray: [String] = []
+    
+    var addPriceToCartArray: [String] = []
     
     var menuDescriptionItems = [[String]]()
     
@@ -34,10 +38,31 @@ class AccordionMenuTableViewController: UITableViewController {
     
     var menuItemType: [AnyObject!] = []
     
+    
+    @IBOutlet weak var addToCartButton: UIButton!
+    
+    
+    
+    /// function that populates the add to cart array based on the menu items selected to add to the cart in the 
+    /// DescirptionViewController
+    func addToCartResponse(addToCartArrayParam: [String], addPriceToCartArrayPram: [String])
+    {
+        self.addToCartArray += addToCartArrayParam
+        self.addPriceToCartArray += addPriceToCartArrayPram
+        
+        let buttonTitle = "Cart (\(addToCartArray.count))"
+        
+        addToCartButton.setTitle(buttonTitle, forState: UIControlState.Normal)
+        
+        
+    }
+    
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        print(restaurantsID)
+        
+       // addToCartButton.frame = CGRectMake(50, 50, 50, 50)
         
         let menuSectionNameWithNoNilValues = menuItemType.flatMap { $0 }
         
@@ -289,29 +314,54 @@ class AccordionMenuTableViewController: UITableViewController {
     
     /// prepare for the segue to the description page. Pass the necessary values to the description page.
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        var menuSections = 0
+        var menuItemSectionsIndex = 0
+        
+        if let blogIndex = tableView.indexPathForSelectedRow?.row {
+            
+            // this variable gets the location of the parent/menu section
+            //let menuSections = self.findParentMenuSection(blogIndex)
+            menuSections = self.findParentMenuSection(blogIndex)
+            // this variable gets the location of the menu item selected under the menu section.
+            //let menuItemSectionsIndex = (blogIndex - self.actualPositions[menuSections] - 1) as Int
+            menuItemSectionsIndex = (blogIndex - self.actualPositions[menuSections] - 1) as Int
+        
+            if (menuDescriptionItems[menuSections].count == 0)
+            {
+                menuDescriptionItems[menuSections].append("Please ask for description")
+            }
+            
+            if (menuPrice[menuSections].count == 0) {
+                menuPrice[menuSections].append("Price not currently avaliable")
+            }
+        }
+        
         if segue.identifier == "descriptionSegue" {
             if let destination = segue.destinationViewController as? DescriptionViewController {
-                if let blogIndex = tableView.indexPathForSelectedRow?.row {
-                    
-                    // this variable gets the location of the parent/menu section
-                    let menuSections = self.findParentMenuSection(blogIndex)
-                    // this variable gets the location of the menu item selected under the menu section.
-                    let menuItemSectionsIndex = (blogIndex - self.actualPositions[menuSections] - 1) as Int
-                    
-                    if (menuDescriptionItems[menuSections].count == 0)
-                    {
-                        menuDescriptionItems[menuSections].append("Please ask for description")
-                    }
-                    
-                    if (menuPrice[menuSections].count == 0) {
-                        menuPrice[menuSections].append("Price not currently avaliable")
-                    }
-                    
-                    destination.itemName = menuItems[menuSections][menuItemSectionsIndex]
-                    destination.descriptionString = menuDescriptionItems[menuSections][menuItemSectionsIndex]
-                    destination.itemPrice = menuPrice[menuSections][menuItemSectionsIndex]
-                }
+                
+                // this sets the delegate to the DescriptionViewController, which is important for setting up the values for addToCartArray.
+                destination.delegate = self
+                
+                destination.itemName = menuItems[menuSections][menuItemSectionsIndex]
+                destination.descriptionString = menuDescriptionItems[menuSections][menuItemSectionsIndex]
+                destination.itemPrice = menuPrice[menuSections][menuItemSectionsIndex]
+                
             }
+        }
+        
+        if (segue.identifier == "addToCartSegue") {
+            let addToCart = segue.destinationViewController as! PaymentViewController
+            
+            //addToCart.itemName = menuItems[menuSections][menuItemSectionsIndex]
+            //addToCart.itemPrice = menuDescriptionItems[menuSections][menuItemSectionsIndex]
+            
+            addToCart.itemsInCart = addToCartArray
+            addToCart.priceOfItemsInCart = addPriceToCartArray
+            
+            //svc.menuItemPricesForPayment = priceItem
+            //svc.menuItemPrices = menuItemPrice
+            
         }
     }
 }

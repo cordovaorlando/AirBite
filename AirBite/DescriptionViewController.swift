@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol AddToCartDelegate
+{
+    func addToCartResponse(addToCartArrayParam: [String], addPriceToCartArrayPram: [String])
+}
 
 class DescriptionViewController: UIViewController {
     
@@ -18,14 +22,36 @@ class DescriptionViewController: UIViewController {
     var itemName = String()
     var itemPrice = String()
     
+    var delegate: AddToCartDelegate?
+    
+    
+    @IBOutlet weak var addToCartButton: UIButton!
+    
+    
+    var addToCartArray = [String]() //= []
+    
+    var addPriceToCart = [String]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        addToCartButton.addTarget(self, action: "addToCart", forControlEvents: .TouchUpInside)
         
         descriptionTextView.text = descriptionString + "\r\n \r\nPrice: " + itemPrice
     }
     
+    func addToCart() {
+        
+        addToCartArray.append(itemName)
+        addPriceToCart.append(itemPrice)
+        
+        self.delegate?.addToCartResponse(addToCartArray, addPriceToCartArrayPram: addPriceToCart)
+        
+        navigationController?.popViewControllerAnimated(true)
+    }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+    
         if (segue.identifier == "paymentSegue") {
             let svc = segue.destinationViewController as! PaymentViewController
             
@@ -44,11 +70,5 @@ class DescriptionViewController: UIViewController {
             //svc.menuItemPrices = menuItemPrice
             
         }
-        
-        
     }
-    
-    
-    
-    
 }

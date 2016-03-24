@@ -53,7 +53,7 @@ class ViewController: UIViewController, UITextFieldDelegate, NSURLConnectionData
         self.airlineField.delegate = self;
         self.flightField.delegate = self;
         configureTextField()
-        handleTextFieldInterfaces()
+        //handleTextFieldInterfaces()
         let tapGesture = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
         tapGesture.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tapGesture)
@@ -168,26 +168,26 @@ class ViewController: UIViewController, UITextFieldDelegate, NSURLConnectionData
     }
     
     
-    private func handleTextFieldInterfaces(){
-        airportField.onTextChange = {[weak self] text in
-            if !text.isEmpty{
-                if self!.connection != nil{
-                    self!.connection!.cancel()
-                    self!.connection = nil
-                }
-                
-                let urlString = self!.airportURLString + text + "?appId=" + self!.airportAppId + "&appKey=" + self!.airportAppKey
-        
-                //Connecting to the API
-                let url = NSURL(string: (urlString as NSString).stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
-                
-                if url != nil{
-                    let urlRequest = NSURLRequest(URL: url!)
-                    self!.connection = NSURLConnection(request: urlRequest, delegate: self)
-                }
-            }
-        }
-    }
+//    private func handleTextFieldInterfaces(){
+//        airportField.onTextChange = {[weak self] text in
+//            if !text.isEmpty{
+//                if self!.connection != nil{
+//                    self!.connection!.cancel()
+//                    self!.connection = nil
+//                }
+//                
+//                let urlString = self!.airportURLString + text + "?appId=" + self!.airportAppId + "&appKey=" + self!.airportAppKey
+//        
+//                //Connecting to the API
+//                let url = NSURL(string: (urlString as NSString).stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
+//                
+//                if url != nil{
+//                    let urlRequest = NSURLRequest(URL: url!)
+//                    self!.connection = NSURLConnection(request: urlRequest, delegate: self)
+//                }
+//            }
+//        }
+//    }
     
     //API Connections
     func connection(connection: NSURLConnection, didReceiveResponse response: NSURLResponse) {
