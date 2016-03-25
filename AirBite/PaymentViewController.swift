@@ -87,9 +87,10 @@ extension PaymentViewController: PKPaymentAuthorizationViewControllerDelegate {
 
 class PaymentViewController: UIViewController {
     
-    @IBOutlet weak var fruitPriceLabel: UILabel!
+    //@IBOutlet weak var fruitPriceLabel: UILabel!
     //@IBOutlet weak var fruitTitleLabel: UILabel!
     @IBOutlet weak var fruitImage: UIImageView!
+    //@IBOutlet weak var applePayButton: UIButton!
     @IBOutlet weak var applePayButton: UIButton!
     
     
@@ -97,7 +98,9 @@ class PaymentViewController: UIViewController {
     //@IBOutlet weak var indvPriceItemLabel: UILabel!
     
     
+    @IBOutlet weak var fruitPriceLabel: UILabel!
     @IBOutlet weak var fruitTitleLabel: UILabel!
+    //@IBOutlet weak var fruitTitleLabel: UILabel!
     
     //var menuItemsForPayment: [String] = []
     //var menuItemPricesForPayment: [AnyObject] = []
@@ -154,7 +157,10 @@ class PaymentViewController: UIViewController {
         applePayButton.hidden = !PKPaymentAuthorizationViewController.canMakePaymentsUsingNetworks(SupportedPaymentNetworks)
     }
     
-    @IBAction func purchase(sender: UIButton) {
+
+    
+    @IBAction func applePayPayment(sender: UIButton) {
+        
         //Build the request
         let request = PKPaymentRequest()
         request.merchantIdentifier = ApplePayFruitsMerchantID
@@ -165,7 +171,7 @@ class PaymentViewController: UIViewController {
         
         //Shipping
         //request.requiredShippingAddressFields = PKAddressField.PostalAddress | PKAddressField.Phone
-
+        
         //Create the summaryItems array
         var summaryItems = [PKPaymentSummaryItem]()
         summaryItems.append(PKPaymentSummaryItem(label: itemName, amount: 20))
@@ -182,6 +188,7 @@ class PaymentViewController: UIViewController {
         //And dont forget this! :)
         applePayController.delegate = self
     }
+    
     
        
     

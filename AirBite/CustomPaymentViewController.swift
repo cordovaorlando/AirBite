@@ -107,5 +107,10 @@ class CustomPaymentViewController: UITableViewController,UITextFieldDelegate {
                 self.handleError(error!)
         }
     }
+    
+    @IBAction func backButton(sender: UIButton) {
+        navigationController?.popViewControllerAnimated(true)
+    }
+    
 }
 

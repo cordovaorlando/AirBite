@@ -36,8 +36,8 @@ class ViewController: UIViewController, UITextFieldDelegate, NSURLConnectionData
     
     //Airport API Url & Keys
     private let airportCode = ""
-    private let airportAppId = "b3bc8082"
-    private let airportAppKey = "7f2044891f2c25f3fadd4b7af9505450"
+    private let airportAppId = "c6ac21ce"
+    private let airportAppKey = "087e0cc4dfab24dde84d819bc91a3667"
     private let airportURLString = "https://api.flightstats.com/flex/airports/rest/v1/json/iata/"
     
     
@@ -53,7 +53,7 @@ class ViewController: UIViewController, UITextFieldDelegate, NSURLConnectionData
         self.airlineField.delegate = self;
         self.flightField.delegate = self;
         configureTextField()
-        //handleTextFieldInterfaces()
+        handleTextFieldInterfaces()
         let tapGesture = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
         tapGesture.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tapGesture)
@@ -168,26 +168,26 @@ class ViewController: UIViewController, UITextFieldDelegate, NSURLConnectionData
     }
     
     
-//    private func handleTextFieldInterfaces(){
-//        airportField.onTextChange = {[weak self] text in
-//            if !text.isEmpty{
-//                if self!.connection != nil{
-//                    self!.connection!.cancel()
-//                    self!.connection = nil
-//                }
-//                
-//                let urlString = self!.airportURLString + text + "?appId=" + self!.airportAppId + "&appKey=" + self!.airportAppKey
-//        
-//                //Connecting to the API
-//                let url = NSURL(string: (urlString as NSString).stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
-//                
-//                if url != nil{
-//                    let urlRequest = NSURLRequest(URL: url!)
-//                    self!.connection = NSURLConnection(request: urlRequest, delegate: self)
-//                }
-//            }
-//        }
-//    }
+    private func handleTextFieldInterfaces(){
+        airportField.onTextChange = {[weak self] text in
+            if !text.isEmpty{
+                if self!.connection != nil{
+                    self!.connection!.cancel()
+                    self!.connection = nil
+                }
+                
+                let urlString = self!.airportURLString + text + "?appId=" + self!.airportAppId + "&appKey=" + self!.airportAppKey
+        
+                //Connecting to the API
+                let url = NSURL(string: (urlString as NSString).stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
+                
+                if url != nil{
+                    let urlRequest = NSURLRequest(URL: url!)
+                    self!.connection = NSURLConnection(request: urlRequest, delegate: self)
+                }
+            }
+        }
+    }
     
     //API Connections
     func connection(connection: NSURLConnection, didReceiveResponse response: NSURLResponse) {
@@ -289,7 +289,7 @@ class ViewController: UIViewController, UITextFieldDelegate, NSURLConnectionData
         
         
         
-        let urlString = "https://api.flightstats.com/flex/airports/rest/v1/json/withinRadius/" + longitude + "/" + latitude + "/25?appId=b3bc8082&appKey=7f2044891f2c25f3fadd4b7af9505450"
+        let urlString = "https://api.flightstats.com/flex/airports/rest/v1/json/withinRadius/" + longitude + "/" + latitude + "/25?appId=c6ac21ce&appKey=087e0cc4dfab24dde84d819bc91a3667"
         
         //let urlString = self.airportURLString + longitude + "/" + latitude + "/50?appId=" + self.airportAppId + "&appKey=" + self.airportAppKey
         
