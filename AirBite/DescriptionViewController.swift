@@ -21,6 +21,7 @@ class DescriptionViewController: UIViewController {
     var foodDescription: [String] = []
     var itemName = String()
     var itemPrice = String()
+    var restaurantsName = String()
     
     var delegate: AddToCartDelegate?
     
@@ -57,17 +58,12 @@ class DescriptionViewController: UIViewController {
             
             svc.itemName = itemName
             svc.itemPrice = itemPrice
-            //svc.menuItemPricesForPayment = priceItem
-            //svc.menuItemPrices = menuItemPrice
             
         }
         if (segue.identifier == "customPaymentSegue") {
             let svc2 = segue.destinationViewController as! CustomPaymentViewController
             
             svc2.itemName = itemName
-            svc2.itemPrice = itemPrice
-            //svc.menuItemPricesForPayment = priceItem
-            //svc.menuItemPrices = menuItemPrice
             
         }
     }

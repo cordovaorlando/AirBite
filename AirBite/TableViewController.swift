@@ -30,11 +30,13 @@ class TableViewController: UITableViewController {
     private var responseData:NSMutableData?
     // Load the contents of a URL by providing a URL request object
     private var connection:NSURLConnection?
+    
+    var airportCode = String()
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.navigationItem.title = airportCode
         
         
         // Uncomment the following line to preserve selection between presentations
@@ -65,6 +67,7 @@ class TableViewController: UITableViewController {
     
     // This returns the title of the section
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        
         return "Restaurants"
     }
     
@@ -185,6 +188,7 @@ class TableViewController: UITableViewController {
                         menuTableViewController.wholeMenuArray = wholeMenuArray
                         menuTableViewController.menuItemType = menuItemType
                         menuTableViewController.restaurantsID = restaurantsID[blogIndex]
+                        menuTableViewController.restaurantsName = restaurantsName[blogIndex]
                     }
                 }
             }

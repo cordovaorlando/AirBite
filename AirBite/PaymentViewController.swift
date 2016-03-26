@@ -86,27 +86,16 @@ extension PaymentViewController: PKPaymentAuthorizationViewControllerDelegate {
 }
 
 class PaymentViewController: UIViewController {
-    
-    //@IBOutlet weak var fruitPriceLabel: UILabel!
-    //@IBOutlet weak var fruitTitleLabel: UILabel!
+
     @IBOutlet weak var fruitImage: UIImageView!
-    //@IBOutlet weak var applePayButton: UIButton!
     @IBOutlet weak var applePayButton: UIButton!
-    
-    
-    
-    //@IBOutlet weak var indvPriceItemLabel: UILabel!
-    
-    
     @IBOutlet weak var fruitPriceLabel: UILabel!
     @IBOutlet weak var fruitTitleLabel: UILabel!
-    //@IBOutlet weak var fruitTitleLabel: UILabel!
-    
-    //var menuItemsForPayment: [String] = []
-    //var menuItemPricesForPayment: [AnyObject] = []
-    
+
     var itemName = String()
     var itemPrice = String()
+    var restaurantsName = String()
+    var totalPrice = String()
     
     var itemsInCart: [String] = []
     var priceOfItemsInCart: [String] = []
@@ -114,13 +103,8 @@ class PaymentViewController: UIViewController {
     //Set some important stuff here
     let SupportedPaymentNetworks = [PKPaymentNetworkVisa, PKPaymentNetworkMasterCard, PKPaymentNetworkAmex]
     let ApplePayFruitsMerchantID = "merchant.com.LSUS.AirBite" // Fill in your merchant ID here!
-    
-    /*var fruit: Fruit! {
-        didSet {
-            // Update the view.
-            self.configureView()
-        }
-    }*/
+
+
     
     func configureView() {
         
@@ -129,7 +113,7 @@ class PaymentViewController: UIViewController {
         }
         
         //self.title = fruit.title
-        self.title = "Mister G's Restaurant"
+        self.title = restaurantsName
         //self.fruitImage.image = fruit.image
         
         // set up the label that holds the details for each indiviudual item in teh cart
@@ -148,11 +132,14 @@ class PaymentViewController: UIViewController {
         }
         let stringPriceItem = String(format: "%.2f", priceOfItems)
         self.fruitPriceLabel.text = "Order Total: $\(stringPriceItem)"
+        totalPrice = stringPriceItem
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configureView()
+        
+       // print(priceOfItemsInCart[0])
         
         applePayButton.hidden = !PKPaymentAuthorizationViewController.canMakePaymentsUsingNetworks(SupportedPaymentNetworks)
     }
@@ -187,6 +174,15 @@ class PaymentViewController: UIViewController {
         
         //And dont forget this! :)
         applePayController.delegate = self
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+        
+        if (segue.identifier == "customPaymentSegue") {
+            let svc = segue.destinationViewController as! CustomPaymentViewController
+            
+            svc.priceOfItemsInCart = priceOfItemsInCart
+        }
     }
     
     

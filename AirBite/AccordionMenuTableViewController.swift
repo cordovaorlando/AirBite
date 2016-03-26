@@ -12,6 +12,7 @@ class AccordionMenuTableViewController: UITableViewController, AddToCartDelegate
     
     var descriptionString = String()
     var foodDescription: [String] = []
+    var restaurantsName = String()
     var restaurantsID = String()
     
     var menuSectionName: [String] = []
@@ -62,6 +63,7 @@ class AccordionMenuTableViewController: UITableViewController, AddToCartDelegate
         
         super.viewDidLoad()
         
+        self.navigationItem.title = restaurantsName
        // addToCartButton.frame = CGRectMake(50, 50, 50, 50)
         
         let menuSectionNameWithNoNilValues = menuItemType.flatMap { $0 }
@@ -346,7 +348,7 @@ class AccordionMenuTableViewController: UITableViewController, AddToCartDelegate
                 destination.itemName = menuItems[menuSections][menuItemSectionsIndex]
                 destination.descriptionString = menuDescriptionItems[menuSections][menuItemSectionsIndex]
                 destination.itemPrice = menuPrice[menuSections][menuItemSectionsIndex]
-                
+                destination.restaurantsName = restaurantsName
             }
         }
         
@@ -358,7 +360,7 @@ class AccordionMenuTableViewController: UITableViewController, AddToCartDelegate
             
             addToCart.itemsInCart = addToCartArray
             addToCart.priceOfItemsInCart = addPriceToCartArray
-            
+            //addToCart.restaurantsName = restaurantsName
             //svc.menuItemPricesForPayment = priceItem
             //svc.menuItemPrices = menuItemPrice
             

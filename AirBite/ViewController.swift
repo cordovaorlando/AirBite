@@ -33,9 +33,10 @@ class ViewController: UIViewController, UITextFieldDelegate, NSURLConnectionData
     private var longitude = String()
     var airportClassification: [Int] = []
     var airportNames: [String] = []
+    //var airportCodes: [String] = []
     
     //Airport API Url & Keys
-    private let airportCode = ""
+    private var airportCode = ""
     private let airportAppId = "c6ac21ce"
     private let airportAppKey = "087e0cc4dfab24dde84d819bc91a3667"
     private let airportURLString = "https://api.flightstats.com/flex/airports/rest/v1/json/iata/"
@@ -165,10 +166,11 @@ class ViewController: UIViewController, UITextFieldDelegate, NSURLConnectionData
             let urlRequest = NSURLRequest(URL: url!)
             self.connection = NSURLConnection(request: urlRequest, delegate: self)
         }
+        
     }
     
     
-    private func handleTextFieldInterfaces(){
+     func handleTextFieldInterfaces(){
         airportField.onTextChange = {[weak self] text in
             if !text.isEmpty{
                 if self!.connection != nil{
@@ -355,6 +357,9 @@ class ViewController: UIViewController, UITextFieldDelegate, NSURLConnectionData
             svc.restaurantsName = restaurantsName
             svc.restaurantsID = restaurantsID
             svc.restaurantsGate = restaurantsGate
+            airportCode = airportField.text!.substringToIndex((airportField.text!.startIndex.advancedBy(3)))
+            svc.airportCode = airportCode
+            airportField.text = ""
         }
     }
 }
