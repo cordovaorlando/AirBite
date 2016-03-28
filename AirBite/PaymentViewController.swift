@@ -120,8 +120,11 @@ class PaymentViewController: UIViewController {
         var cartItems = ""
         for var i = 0; i <= itemsInCart.count - 1; i++ {
             let individualItem = "\(itemsInCart[i]): $\(priceOfItemsInCart[i]) \r\n \r\n"
+            //let individualItem = "\(itemsInCart[i]): $\(priceOfItemsInCart[i]) "
             cartItems += individualItem
         }
+        
+        self.fruitTitleLabel.numberOfLines = 0
         self.fruitTitleLabel.text = cartItems
         
         // set up the total price
