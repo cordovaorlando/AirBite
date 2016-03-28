@@ -100,6 +100,9 @@ class PaymentViewController: UIViewController {
     var itemsInCart: [String] = []
     var priceOfItemsInCart: [String] = []
     
+    var cartItems = String()
+    var intPriceItem = NSDecimalNumber()
+    
     //Set some important stuff here
     let SupportedPaymentNetworks = [PKPaymentNetworkVisa, PKPaymentNetworkMasterCard, PKPaymentNetworkAmex]
     let ApplePayFruitsMerchantID = "merchant.com.LSUS.AirBite" // Fill in your merchant ID here!
@@ -117,7 +120,7 @@ class PaymentViewController: UIViewController {
         //self.fruitImage.image = fruit.image
         
         // set up the label that holds the details for each indiviudual item in teh cart
-        var cartItems = ""
+        //var cartItems = ""
         for var i = 0; i <= itemsInCart.count - 1; i++ {
             let individualItem = "\(itemsInCart[i]): $\(priceOfItemsInCart[i]) \r\n"
             cartItems += individualItem
@@ -132,7 +135,10 @@ class PaymentViewController: UIViewController {
             let price = (pItem as NSString).floatValue
             priceOfItems += price
         }
+        
+        intPriceItem = NSDecimalNumber(float: priceOfItems)
         let stringPriceItem = String(format: "%.2f", priceOfItems)
+        //stringPriceItem = String(format: "%.2f", priceOfItems)
         self.fruitPriceLabel.text = "Order Total: $\(stringPriceItem)"
         totalPrice = stringPriceItem
     }
@@ -162,10 +168,12 @@ class PaymentViewController: UIViewController {
         //request.requiredShippingAddressFields = PKAddressField.PostalAddress | PKAddressField.Phone
         
         //Create the summaryItems array
+        
         var summaryItems = [PKPaymentSummaryItem]()
-        summaryItems.append(PKPaymentSummaryItem(label: itemName, amount: 20))
+        summaryItems.append(PKPaymentSummaryItem(label: cartItems, amount: intPriceItem))//20))
         //summaryItems.append(PKPaymentSummaryItem(label: "Shipping", amount: fruit.shippingPrice))
-        summaryItems.append(PKPaymentSummaryItem(label: "Mister G Restaurant", amount: 20))
+        //summaryItems.append(PKPaymentSummaryItem(label: "Mister G Restaurant", amount: intPriceItem))
+        summaryItems.append(PKPaymentSummaryItem(label: restaurantsName, amount: intPriceItem))
         
         //Set the paymentSummaryItems to your array
         request.paymentSummaryItems = summaryItems
@@ -186,9 +194,5 @@ class PaymentViewController: UIViewController {
             svc.priceOfItemsInCart = priceOfItemsInCart
         }
     }
-    
-    
-       
-    
 }
 

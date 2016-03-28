@@ -360,7 +360,7 @@ class AccordionMenuTableViewController: UITableViewController, AddToCartDelegate
             
             addToCart.itemsInCart = addToCartArray
             addToCart.priceOfItemsInCart = addPriceToCartArray
-            //addToCart.restaurantsName = restaurantsName
+            addToCart.restaurantsName = restaurantsName
             //svc.menuItemPricesForPayment = priceItem
             //svc.menuItemPrices = menuItemPrice
             
