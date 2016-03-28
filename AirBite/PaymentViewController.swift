@@ -119,8 +119,7 @@ class PaymentViewController: UIViewController {
         // set up the label that holds the details for each indiviudual item in teh cart
         var cartItems = ""
         for var i = 0; i <= itemsInCart.count - 1; i++ {
-            let individualItem = "\(itemsInCart[i]): $\(priceOfItemsInCart[i]) \r\n \r\n"
-            //let individualItem = "\(itemsInCart[i]): $\(priceOfItemsInCart[i]) "
+            let individualItem = "\(itemsInCart[i]): $\(priceOfItemsInCart[i]) \r\n"
             cartItems += individualItem
         }
         
