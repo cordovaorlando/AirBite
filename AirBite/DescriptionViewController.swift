@@ -29,13 +29,11 @@ class DescriptionViewController: UIViewController {
     @IBOutlet weak var addToCartButton: UIButton!
     
     
-    var addToCartArray = [String]() //= []
-    
+    var addToCartArray = [String]()
     var addPriceToCart = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         addToCartButton.addTarget(self, action: "addToCart", forControlEvents: .TouchUpInside)
         
         descriptionTextView.text = descriptionString + "\r\n \r\nPrice: " + itemPrice

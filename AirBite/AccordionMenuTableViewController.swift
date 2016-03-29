@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AccordionMenuTableViewController: UITableViewController, AddToCartDelegate {
+class AccordionMenuTableViewController: UITableViewController, AddToCartDelegate, RemoveFromCartDelegate {
     
     
     var descriptionString = String()
@@ -54,11 +54,24 @@ class AccordionMenuTableViewController: UITableViewController, AddToCartDelegate
         let buttonTitle = "Cart (\(addToCartArray.count))"
         
         addToCartButton.setTitle(buttonTitle, forState: UIControlState.Normal)
-        
-        
     }
     
+    func removeFromCartResponse(removeFromCartArrayParam: [String], removePriceFromCartArrayPram: [String])
+    {
+        self.addPriceToCartArray = []
+        self.addPriceToCartArray = []
+        
+        self.addToCartArray = removeFromCartArrayParam
+        self.addPriceToCartArray = removePriceFromCartArrayPram
+        
+        print(addToCartArray)
+        print(addPriceToCartArray)
     
+        let buttonTitle = "Cart (\(addToCartArray.count))"
+    
+        addToCartButton.setTitle(buttonTitle, forState: UIControlState.Normal)
+    }
+
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -355,14 +368,12 @@ class AccordionMenuTableViewController: UITableViewController, AddToCartDelegate
         if (segue.identifier == "addToCartSegue") {
             let addToCart = segue.destinationViewController as! PaymentViewController
             
-            //addToCart.itemName = menuItems[menuSections][menuItemSectionsIndex]
-            //addToCart.itemPrice = menuDescriptionItems[menuSections][menuItemSectionsIndex]
+            // this sets the delegate to the PaymentViewController, which is important for updating the cart when hitting the back button.
+            addToCart.delegate = self
             
             addToCart.itemsInCart = addToCartArray
             addToCart.priceOfItemsInCart = addPriceToCartArray
             addToCart.restaurantsName = restaurantsName
-            //svc.menuItemPricesForPayment = priceItem
-            //svc.menuItemPrices = menuItemPrice
             
         }
     }

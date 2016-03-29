@@ -85,12 +85,17 @@ extension PaymentViewController: PKPaymentAuthorizationViewControllerDelegate {
     }
 }
 
-class PaymentViewController: UIViewController {
+protocol RemoveFromCartDelegate
+{
+    func removeFromCartResponse(removeFromCartArrayParam: [String], removePriceFromCartArrayPram: [String])
+}
+
+class PaymentViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var fruitImage: UIImageView!
     @IBOutlet weak var applePayButton: UIButton!
     @IBOutlet weak var fruitPriceLabel: UILabel!
-    @IBOutlet weak var fruitTitleLabel: UILabel!
+    @IBOutlet var tableViewSummary: UITableView!
 
     var itemName = String()
     var itemPrice = String()
@@ -99,16 +104,19 @@ class PaymentViewController: UIViewController {
     
     var itemsInCart: [String] = []
     var priceOfItemsInCart: [String] = []
-    
-    var cartItems = String()
     var intPriceItem = NSDecimalNumber()
+    
+    var priceOfItems = Float()
+    var stringPriceItem = String()
+    var stringConvenienceFee = String()
+    var stringTaxOfFood = String()
+    
+    var delegate: RemoveFromCartDelegate?
     
     //Set some important stuff here
     let SupportedPaymentNetworks = [PKPaymentNetworkVisa, PKPaymentNetworkMasterCard, PKPaymentNetworkAmex]
     let ApplePayFruitsMerchantID = "merchant.com.LSUS.AirBite" // Fill in your merchant ID here!
 
-
-    
     func configureView() {
         
         if (!self.isViewLoaded()) {
@@ -119,18 +127,7 @@ class PaymentViewController: UIViewController {
         self.title = restaurantsName
         //self.fruitImage.image = fruit.image
         
-        // set up the label that holds the details for each indiviudual item in teh cart
-        //var cartItems = ""
-        for var i = 0; i <= itemsInCart.count - 1; i++ {
-            let individualItem = "\(itemsInCart[i]): $\(priceOfItemsInCart[i]) \r\n"
-            cartItems += individualItem
-        }
-        
-        self.fruitTitleLabel.numberOfLines = 0
-        self.fruitTitleLabel.text = cartItems
-        
         // set up the total price
-        var priceOfItems = Float()
         for pItem in priceOfItemsInCart {
             let price = (pItem as NSString).floatValue
             priceOfItems += price
@@ -145,9 +142,9 @@ class PaymentViewController: UIViewController {
         
         intPriceItem = NSDecimalNumber(float: priceOfItems)
         
-        let stringPriceItem = convertFloatToString(priceOfItems)
-        let stringConvenienceFee = convertFloatToString(convenienceFee)
-        let stringTaxOfFood = convertFloatToString(taxOfFood)
+        stringPriceItem = convertFloatToString(priceOfItems)
+        stringConvenienceFee = convertFloatToString(convenienceFee)
+        stringTaxOfFood = convertFloatToString(taxOfFood)
 
         self.fruitPriceLabel.text = "Convenience Fee: $\(stringConvenienceFee) \r\nTax: $\(stringTaxOfFood) \r\nOrder Total: $\(stringPriceItem)"
         totalPrice = stringPriceItem
@@ -162,7 +159,61 @@ class PaymentViewController: UIViewController {
         super.viewDidLoad()
         self.configureView()
         
+        // these next three lines of codes overrides the designed back button, and lets it be custom in order to update the cart when hitting the back button.
+        self.navigationItem.hidesBackButton = true
+        let newBackButton = UIBarButtonItem(title: "Add Food", style: UIBarButtonItemStyle.Bordered, target: self, action: "updateCart:")
+        self.navigationItem.leftBarButtonItem = newBackButton;
+        
         applePayButton.hidden = !PKPaymentAuthorizationViewController.canMakePaymentsUsingNetworks(SupportedPaymentNetworks)
+        
+        // register the table view created since it's not a table view controller, just a table view inside the view controller.
+        self.tableViewSummary.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
+    }
+    
+    /// returns the number of rows in the table view cell based on the number of items in the cart.
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.itemsInCart.count;
+    }
+
+    /// Populate the table view cells in the table view to have the each item and price listed in the cart.
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell:UITableViewCell = self.tableViewSummary.dequeueReusableCellWithIdentifier("cell")! as UITableViewCell
+        
+        cell.textLabel?.text = self.itemsInCart[indexPath.row] + ": $" + self.priceOfItemsInCart[indexPath.row]
+        
+        return cell
+    }
+    
+    /// Create the swipe to delete functionality for the table view contaning the food items.
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == .Delete {
+            
+            print(priceOfItems)
+            
+            let priceToRemove = Float(priceOfItemsInCart[indexPath.row])
+            priceOfItems -= priceToRemove!
+            stringPriceItem = convertFloatToString(priceOfItems)
+            
+            self.fruitPriceLabel.text = "Convenience Fee: $\(stringConvenienceFee) \r\nTax: $\(stringTaxOfFood) \r\nOrder Total: $\(stringPriceItem)"
+            
+            intPriceItem = NSDecimalNumber(float: priceOfItems)
+            
+            itemsInCart.removeAtIndex(indexPath.row)
+            priceOfItemsInCart.removeAtIndex(indexPath.row)
+            tableViewSummary.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+        }
+    }
+    
+    /// this function updates the cart if necessary (i.e. items have been removed) when the back/Add Food button has been pressed before going back to the menu page.
+    func updateCart(sender: UIBarButtonItem) {
+        self.delegate?.removeFromCartResponse(itemsInCart, removePriceFromCartArrayPram: priceOfItemsInCart)
+        self.navigationController?.popViewControllerAnimated(true)
+    }
+    
+    /// set up the ability to edit each row in the table view cell.
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        // Return false if you do not want the specified item to be editable.
+        return true
     }
     
     @IBAction func applePayPayment(sender: UIButton) {
