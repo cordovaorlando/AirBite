@@ -21,12 +21,12 @@ class CustomPaymentViewController: UITableViewController,UITextFieldDelegate {
     var userEmail = String()
     var priceOfItemsInCart: [String] = []
     var receiptForm = String()
+    
+    var taxOfFood = String()
+    var convenienceFee = String()
 
     
     @IBOutlet var textFields: [UITextField]!
-    
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,11 +38,15 @@ class CustomPaymentViewController: UITableViewController,UITextFieldDelegate {
             let price = (pItem as NSString).floatValue
             priceOfItems += price
         }
-        let stringPriceItem = String(format: "%.2f", priceOfItems)
+        //let stringPriceItem = String(format: "%.2f", priceOfItems)
         //self.fruitPriceLabel.text = "Order Total: $\(stringPriceItem)"
         
+        let priceSummary = Float(convenienceFee)! + Float(taxOfFood)! + priceOfItems
+        let stringPriceItem = String(format: "%.2f", priceSummary)
+
+        
         print(Int(priceOfItemsInCart[0]))
-        amountTextField.text = "         Order Total: $\(stringPriceItem)"
+        amountTextField.text = "         Order Total: $\(priceSummary)"
         
         self.navigationItem.rightBarButtonItem?.title = (navigationItem.rightBarButtonItem?.title)! +  "  $" + stringPriceItem
         

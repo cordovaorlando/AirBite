@@ -251,6 +251,8 @@ class PaymentViewController: UIViewController, UITableViewDelegate, UITableViewD
             let svc = segue.destinationViewController as! CustomPaymentViewController
             
             svc.priceOfItemsInCart = priceOfItemsInCart
+            svc.taxOfFood = stringTaxOfFood
+            svc.convenienceFee = stringConvenienceFee
         }
     }
 }
