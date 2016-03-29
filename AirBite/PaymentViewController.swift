@@ -135,24 +135,35 @@ class PaymentViewController: UIViewController {
             let price = (pItem as NSString).floatValue
             priceOfItems += price
         }
+        self.fruitPriceLabel.numberOfLines = 0
+        
+        let convenienceFee = Float(2.00)
+        let taxOfFood = priceOfItems * Float(0.07)
+        
+        priceOfItems += convenienceFee
+        priceOfItems += taxOfFood
         
         intPriceItem = NSDecimalNumber(float: priceOfItems)
-        let stringPriceItem = String(format: "%.2f", priceOfItems)
-        //stringPriceItem = String(format: "%.2f", priceOfItems)
-        self.fruitPriceLabel.text = "Order Total: $\(stringPriceItem)"
+        
+        let stringPriceItem = convertFloatToString(priceOfItems)
+        let stringConvenienceFee = convertFloatToString(convenienceFee)
+        let stringTaxOfFood = convertFloatToString(taxOfFood)
+
+        self.fruitPriceLabel.text = "Convenience Fee: $\(stringConvenienceFee) \r\nTax: $\(stringTaxOfFood) \r\nOrder Total: $\(stringPriceItem)"
         totalPrice = stringPriceItem
+    }
+    
+    /// converts the passed in float to a string with two precceding decimals.
+    func convertFloatToString(floatToConvert: Float) -> String{
+        return String(format: "%.2f", floatToConvert)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configureView()
         
-       // print(priceOfItemsInCart[0])
-        
         applePayButton.hidden = !PKPaymentAuthorizationViewController.canMakePaymentsUsingNetworks(SupportedPaymentNetworks)
     }
-    
-
     
     @IBAction func applePayPayment(sender: UIButton) {
         
@@ -170,9 +181,6 @@ class PaymentViewController: UIViewController {
         //Create the summaryItems array
         
         var summaryItems = [PKPaymentSummaryItem]()
-        summaryItems.append(PKPaymentSummaryItem(label: cartItems, amount: intPriceItem))//20))
-        //summaryItems.append(PKPaymentSummaryItem(label: "Shipping", amount: fruit.shippingPrice))
-        //summaryItems.append(PKPaymentSummaryItem(label: "Mister G Restaurant", amount: intPriceItem))
         summaryItems.append(PKPaymentSummaryItem(label: restaurantsName, amount: intPriceItem))
         
         //Set the paymentSummaryItems to your array
