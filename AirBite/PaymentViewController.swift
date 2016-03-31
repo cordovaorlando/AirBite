@@ -24,6 +24,40 @@ extension PaymentViewController: PKPaymentAuthorizationViewControllerDelegate {
         STPAPIClient.sharedClient().createTokenWithPayment(payment) {
             (token, error) -> Void in
             
+            self.navigationController?.popToRootViewControllerAnimated(true)
+            
+            //Sends Emails after transaction Approved.
+            let myUrl = NSURL(string: "https://api.mailgun.net/v3/sandboxcfe66167019a455aa52e6d456a203246.mailgun.org/messages");
+            let requestEmail = NSMutableURLRequest(URL:myUrl!);
+            //        let request: NSMutableURLRequest = NSMutableURLRequest(URL: NSURL(string: "https://api.mailgun.net/v3/sandboxcfe66167019a455aa52e6d456a203246.mailgun.org/messages")!)
+            requestEmail.HTTPMethod = "POST"
+            
+            // Basic Authentication
+            let username = "api"
+            let password = "key-a64566a21584e816782a1a1e63ab91e7"
+            let loginString = NSString(format: "%@:%@", username, password)
+            let loginData: NSData = loginString.dataUsingEncoding(NSUTF8StringEncoding)!
+            let base64LoginString = loginData.base64EncodedStringWithOptions([])
+            requestEmail.setValue("Basic \(base64LoginString)", forHTTPHeaderField: "Authorization")
+            
+            
+            
+            
+            let bodyStr = "from=AirBite <sales@goairbite.com>&to=Receiver name <cordovaorlando@hotmail.com>&subject=We've received your order! Order # BBY01&text= Thanks for your order."
+            
+            // appending the data
+            requestEmail.HTTPBody = bodyStr.dataUsingEncoding(NSUTF8StringEncoding);
+            
+            let task = NSURLSession.sharedSession().dataTaskWithRequest(requestEmail, completionHandler: { (data, response, error) -> Void in
+                // ... do other stuff here
+            })
+            
+            task.resume()
+            print("testing...")
+            
+            
+            
+            
             if (error != nil) {
                 print(error)
                 completion(PKPaymentAuthorizationStatus.Failure)

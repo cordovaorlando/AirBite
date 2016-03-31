@@ -152,11 +152,14 @@ class ViewController: UIViewController, UITextFieldDelegate, NSURLConnectionData
     //Action for the Button
     @IBAction func buttonPressed(sender: AnyObject) {
         
-        //Saves airport textfield text into this variable.
         let userInput = airportField.text
         
+        
+        if(!(airportField.text?.isEmpty)! && airportField.text?.characters.count > 2){
+            
+        
         //Saves only the airport code of each line in airport textfield.
-        let airportCode = userInput? .substringToIndex((userInput?.startIndex.advancedBy(3))!)
+        let airportCode = userInput?.substringToIndex((userInput?.startIndex.advancedBy(3))!)
         
         let urlString = "https://api.locu.com/v1_0/venue/search/?has_menu=TRUE&locality=" + airportCode! + "&api_key=42c74053d1a1b2377c716af18da0b235d260be5b"
   
@@ -165,6 +168,7 @@ class ViewController: UIViewController, UITextFieldDelegate, NSURLConnectionData
         if url != nil{
             let urlRequest = NSURLRequest(URL: url!)
             self.connection = NSURLConnection(request: urlRequest, delegate: self)
+        }
         }
         
     }
