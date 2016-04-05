@@ -29,6 +29,19 @@
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
+	<key>UIApplicationShortcutItems</key>
+	<array>
+		<dict>
+			<key>UIApplicationShortcutItemIconFile</key>
+			<string>AirBite</string>
+			<key>UIApplicationShortcutItemSubtitle</key>
+			<string>Open AirBite using 3D Touch</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>AirBite</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>$(PRODUCT_BUNDLE_IDENTIFIER).AirBite</string>
+		</dict>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
