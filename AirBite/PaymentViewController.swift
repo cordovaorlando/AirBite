@@ -145,6 +145,9 @@ class PaymentViewController: UIViewController, UITableViewDelegate, UITableViewD
     var stringConvenienceFee = String()
     var stringTaxOfFood = String()
     
+    var convenienceFee = Float()
+    var taxOfFood = Float()
+    
     var delegate: RemoveFromCartDelegate?
     
     //Set some important stuff here
@@ -168,8 +171,8 @@ class PaymentViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
         self.fruitPriceLabel.numberOfLines = 0
         
-        let convenienceFee = Float(2.00)
-        let taxOfFood = priceOfItems * Float(0.07)
+        convenienceFee = Float(2.00)
+        taxOfFood = priceOfItems * Float(0.07)
         
         priceOfItems += convenienceFee
         priceOfItems += taxOfFood
@@ -218,15 +221,33 @@ class PaymentViewController: UIViewController, UITableViewDelegate, UITableViewD
         return cell
     }
     
+    // function to update the total price after an item has been removed from the cart.
+    func updatePrice(priceToUpdate: Float) -> String {
+        
+        // remove all the previous prices. We are removing the priceToUpdate item, so we need to remove previous tax and conveience fee.
+        priceOfItems -= priceToUpdate
+        priceOfItems -= convenienceFee
+        priceOfItems -= taxOfFood
+        
+        // create new tax of food.
+        let newTaxOfFood = priceOfItems * Float(0.07)
+        
+        // re add convenienceFee and newTaxOfFood to get new total
+        priceOfItems += convenienceFee
+        priceOfItems += newTaxOfFood
+        
+        stringTaxOfFood = convertFloatToString(newTaxOfFood)
+        
+        return convertFloatToString(priceOfItems)
+    }
+    
     /// Create the swipe to delete functionality for the table view contaning the food items.
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             
-            print(priceOfItems)
+            let priceToUpdate = Float(priceOfItemsInCart[indexPath.row])
             
-            let priceToRemove = Float(priceOfItemsInCart[indexPath.row])
-            priceOfItems -= priceToRemove!
-            stringPriceItem = convertFloatToString(priceOfItems)
+            stringPriceItem = updatePrice(priceToUpdate!)
             
             self.fruitPriceLabel.text = "Convenience Fee: $\(stringConvenienceFee) \r\nTax: $\(stringTaxOfFood) \r\nOrder Total: $\(stringPriceItem)"
             
