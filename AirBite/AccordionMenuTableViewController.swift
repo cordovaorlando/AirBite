@@ -64,8 +64,8 @@ class AccordionMenuTableViewController: UITableViewController, AddToCartDelegate
         self.addToCartArray = removeFromCartArrayParam
         self.addPriceToCartArray = removePriceFromCartArrayPram
         
-        print(addToCartArray)
-        print(addPriceToCartArray)
+       // print(addToCartArray)
+       // print(addPriceToCartArray)
     
         let buttonTitle = "Cart (\(addToCartArray.count))"
     
@@ -341,16 +341,36 @@ class AccordionMenuTableViewController: UITableViewController, AddToCartDelegate
             // this variable gets the location of the menu item selected under the menu section.
             //let menuItemSectionsIndex = (blogIndex - self.actualPositions[menuSections] - 1) as Int
             menuItemSectionsIndex = (blogIndex - self.actualPositions[menuSections] - 1) as Int
-        
+            
+            // for items that don't come with a description, we are adding a generic description in order for the array not to break.
             if (menuDescriptionItems[menuSections].count == 0)
             {
-                menuDescriptionItems[menuSections].append("Please ask for description")
+                
+                print(menuItems[menuSections].count)
+                
+                
+                for _ in menuItems[menuSections]
+                {
+                    menuDescriptionItems[menuSections].append("Please ask for description")
+                }
+                
+                print(menuDescriptionItems[menuSections].count)
             }
             
+            // for not append a set price for the items that do not have a set price. This will allow the add to cart to not break.
             if (menuPrice[menuSections].count == 0) {
-                menuPrice[menuSections].append("Price not currently avaliable")
+                let setPrice = String(format: "%.2f", Float(5.00))
+                
+                for _ in menuItems[menuSections]
+                {
+                    menuPrice[menuSections].append(setPrice)
+                }
             }
         }
+        
+        // if these print statments work, which they do, then there should be no breaking on the segue.
+        print(menuDescriptionItems[menuSections][menuItemSectionsIndex])
+        print(menuPrice[menuSections][menuItemSectionsIndex])
         
         if segue.identifier == "descriptionSegue" {
             if let destination = segue.destinationViewController as? DescriptionViewController {
