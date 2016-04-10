@@ -24,6 +24,10 @@ class CustomPaymentViewController: UITableViewController,UITextFieldDelegate {
     
     var taxOfFood = String()
     var convenienceFee = String()
+    
+    var emailBody = String()
+    var emailHeader = String()
+    var restaurantsName = String()
 
     
     @IBOutlet var textFields: [UITextField]!
@@ -150,35 +154,8 @@ class CustomPaymentViewController: UITableViewController,UITextFieldDelegate {
                     cancelButtonTitle: "OK").show()
                 
                 
-                //Sends Emails after transaction Approved.
-                let myUrl = NSURL(string: "https://api.mailgun.net/v3/sandboxcfe66167019a455aa52e6d456a203246.mailgun.org/messages");
-                let request = NSMutableURLRequest(URL:myUrl!);
-                //        let request: NSMutableURLRequest = NSMutableURLRequest(URL: NSURL(string: "https://api.mailgun.net/v3/sandboxcfe66167019a455aa52e6d456a203246.mailgun.org/messages")!)
-                request.HTTPMethod = "POST"
-                
-                // Basic Authentication
-                let username = "api"
-                let password = "key-a64566a21584e816782a1a1e63ab91e7"
-                let loginString = NSString(format: "%@:%@", username, password)
-                let loginData: NSData = loginString.dataUsingEncoding(NSUTF8StringEncoding)!
-                let base64LoginString = loginData.base64EncodedStringWithOptions([])
-                request.setValue("Basic \(base64LoginString)", forHTTPHeaderField: "Authorization")
-                
-                
-                
-                
-                let bodyStr = "from=AirBite <sales@goairbite.com>&to=Receiver name <"
-                    + self.userEmail + ">&subject=We've received your order! Order # BBY01&text= Thanks for your order."
-                
-                // appending the data
-                request.HTTPBody = bodyStr.dataUsingEncoding(NSUTF8StringEncoding);
-                
-                let task = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
-                    // ... do other stuff here
-                })
-                
-                task.resume()
-                print("testing...")
+                self.sendCustomerEmail()
+                self.sendRestaurantEmail()
                 
                 
                 
@@ -192,6 +169,71 @@ class CustomPaymentViewController: UITableViewController,UITextFieldDelegate {
     @IBAction func backButton(sender: UIButton) {
         navigationController?.popViewControllerAnimated(true)
     }
+    
+    func sendCustomerEmail(){
+        //Sends Emails after transaction Approved.
+        let myUrl = NSURL(string: "https://api.mailgun.net/v3/sandboxcfe66167019a455aa52e6d456a203246.mailgun.org/messages");
+        let requestEmail = NSMutableURLRequest(URL:myUrl!);
+        //        let request: NSMutableURLRequest = NSMutableURLRequest(URL: NSURL(string: "https://api.mailgun.net/v3/sandboxcfe66167019a455aa52e6d456a203246.mailgun.org/messages")!)
+        requestEmail.HTTPMethod = "POST"
+        
+        // Basic Authentication
+        let username = "api"
+        let password = "key-a64566a21584e816782a1a1e63ab91e7"
+        let loginString = NSString(format: "%@:%@", username, password)
+        let loginData: NSData = loginString.dataUsingEncoding(NSUTF8StringEncoding)!
+        let base64LoginString = loginData.base64EncodedStringWithOptions([])
+        requestEmail.setValue("Basic \(base64LoginString)", forHTTPHeaderField: "Authorization")
+        
+        // appending the data
+        requestEmail.HTTPBody = (self.emailHeader + self.emailBody).dataUsingEncoding(NSUTF8StringEncoding);
+        
+        let task = NSURLSession.sharedSession().dataTaskWithRequest(requestEmail, completionHandler: { (data, response, error) -> Void in
+            // ... do other stuff here
+        })
+        
+        task.resume()
+        print("testing...")
+        
+    }
+    
+    func sendRestaurantEmail(){
+        
+        
+        
+        var restaurantEmailHeader = "from=AirBite <sales@goairbite.com>&to=" + self.restaurantsName  + "<restaurant@goairbite.com>&subject=Order #12345&text=Please see the details below!"
+        
+        
+        
+        
+        //Sends Emails after transaction Approved.
+        let myUrl = NSURL(string: "https://api.mailgun.net/v3/sandboxcfe66167019a455aa52e6d456a203246.mailgun.org/messages");
+        let requestEmail = NSMutableURLRequest(URL:myUrl!);
+        //        let request: NSMutableURLRequest = NSMutableURLRequest(URL: NSURL(string: "https://api.mailgun.net/v3/sandboxcfe66167019a455aa52e6d456a203246.mailgun.org/messages")!)
+        requestEmail.HTTPMethod = "POST"
+        
+        // Basic Authentication
+        let username = "api"
+        let password = "key-a64566a21584e816782a1a1e63ab91e7"
+        let loginString = NSString(format: "%@:%@", username, password)
+        let loginData: NSData = loginString.dataUsingEncoding(NSUTF8StringEncoding)!
+        let base64LoginString = loginData.base64EncodedStringWithOptions([])
+        requestEmail.setValue("Basic \(base64LoginString)", forHTTPHeaderField: "Authorization")
+        
+        // appending the data
+        requestEmail.HTTPBody = (restaurantEmailHeader + self.emailBody).dataUsingEncoding(NSUTF8StringEncoding);
+        
+        let task = NSURLSession.sharedSession().dataTaskWithRequest(requestEmail, completionHandler: { (data, response, error) -> Void in
+            // ... do other stuff here
+        })
+        
+        task.resume()
+        print("testing...")
+        
+    }
+
+
+    
     
 }
 

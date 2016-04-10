@@ -36,7 +36,7 @@ class DescriptionViewController: UIViewController {
         super.viewDidLoad()
         addToCartButton.addTarget(self, action: "addToCart", forControlEvents: .TouchUpInside)
         
-        descriptionTextView.text = descriptionString + "\r\n \r\nPrice: " + itemPrice
+        descriptionTextView.text = itemName + "\r\n" + "\r\n" + descriptionString + "\r\n \r\nPrice: " + itemPrice
     }
     
     func addToCart() {
