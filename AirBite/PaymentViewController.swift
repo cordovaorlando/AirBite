@@ -162,7 +162,7 @@ class PaymentViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configureView()
-        print(itemsInCart)
+       // print(itemsInCart)
         
         // these next three lines of codes overrides the designed back button, and lets it be custom in order to update the cart when hitting the back button.
         self.navigationItem.hidesBackButton = true
@@ -195,8 +195,15 @@ class PaymentViewController: UIViewController, UITableViewDelegate, UITableViewD
         // remove all the previous prices. We are removing the priceToUpdate item, so we need to remove previous tax and conveience fee.
         priceOfItems -= priceToUpdate
         priceOfItems -= convenienceFee
-        priceOfItems -= taxOfFood
+        priceOfItems = priceOfItems - round(100.0 * taxOfFood) / 100.0//taxOfFood
 
+        if (priceOfItems <= 0) {
+            convenienceFee = 0
+            taxOfFood = 0
+            stringConvenienceFee = "0.00"
+            stringTaxOfFood = "0.00"
+            return "0.00"
+        }
         
         // create new tax of food.
         let newTaxOfFood = priceOfItems * Float(0.07)
@@ -206,6 +213,7 @@ class PaymentViewController: UIViewController, UITableViewDelegate, UITableViewD
         priceOfItems += newTaxOfFood
 
         stringTaxOfFood = convertFloatToString(newTaxOfFood)
+        taxOfFood = newTaxOfFood
         
         return convertFloatToString(priceOfItems)
     }
