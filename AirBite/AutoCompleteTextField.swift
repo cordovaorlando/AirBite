@@ -64,11 +64,11 @@ public class AutoCompleteTextField:UITextField, UITableViewDataSource, UITableVi
         setupAutocompleteTable(superview!)
     }
     
-    public override func willMoveToSuperview(newSuperview: UIView?) {
+   /* public override func willMoveToSuperview(newSuperview: UIView?) {
         super.willMoveToSuperview(newSuperview)
         commonInit()
         setupAutocompleteTable(newSuperview!)
-    }
+    }*/
     
     public override func resignFirstResponder() -> Bool {
         self.autoCompleteTableView?.hidden = true

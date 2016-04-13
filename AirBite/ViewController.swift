@@ -41,10 +41,19 @@ class ViewController: UIViewController, UITextFieldDelegate, NSURLConnectionData
     private let airportAppKey = "087e0cc4dfab24dde84d819bc91a3667"
     private let airportURLString = "https://api.flightstats.com/flex/airports/rest/v1/json/iata/"
     
+    var deliverySelected = false
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        if(deliverySelected == true){
+            airlineField.hidden = false
+            flightField.hidden = false
+        }
+        
+        print(deliverySelected)
         
         manager.delegate = self
         manager.desiredAccuracy = kCLLocationAccuracyBest

@@ -12,6 +12,7 @@
 		90429A6F1C7CA6E800967EF3 /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90429A6B1C7CA6E800967EF3 /* PaymentViewController.swift */; };
 		9081C15E1C7BCE10007ACA5C /* DescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9081C15D1C7BCE10007ACA5C /* DescriptionViewController.swift */; };
 		90C810B41C60191D008624CE /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90C810B31C60191D008624CE /* TableViewController.swift */; };
+		90D1758F1CBDECAE007FBBD6 /* OptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D1758E1CBDECAE007FBBD6 /* OptionViewController.swift */; };
 		90F0E93F1CB87A7900B38D6D /* htmlFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F0E93E1CB87A7900B38D6D /* htmlFile.swift */; };
 		90FD745F1C97A388001D2C13 /* CustomPaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FD745E1C97A388001D2C13 /* CustomPaymentViewController.swift */; };
 		C244A88D1BF1732A000CF306 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C244A88C1BF1732A000CF306 /* AppDelegate.swift */; };
@@ -50,6 +51,7 @@
 		9081C15D1C7BCE10007ACA5C /* DescriptionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DescriptionViewController.swift; sourceTree = "<group>"; };
 		9081C15F1C7CA609007ACA5C /* AirBite.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = AirBite.entitlements; sourceTree = "<group>"; };
 		90C810B31C60191D008624CE /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		90D1758E1CBDECAE007FBBD6 /* OptionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionViewController.swift; sourceTree = "<group>"; };
 		90F0E93E1CB87A7900B38D6D /* htmlFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = htmlFile.swift; sourceTree = "<group>"; };
 		90FD745D1C979D10001D2C13 /* AirBite-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AirBite-Bridging-Header.h"; sourceTree = "<group>"; };
 		90FD745E1C97A388001D2C13 /* CustomPaymentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPaymentViewController.swift; sourceTree = "<group>"; };
@@ -149,6 +151,7 @@
 				9081C15F1C7CA609007ACA5C /* AirBite.entitlements */,
 				C244A8901BF1732A000CF306 /* Main.storyboard */,
 				C244A88E1BF1732A000CF306 /* ViewController.swift */,
+				90D1758E1CBDECAE007FBBD6 /* OptionViewController.swift */,
 				90C810B31C60191D008624CE /* TableViewController.swift */,
 				C2B966BE1C84F7F40009BD1E /* AccordionMenuTableViewController.swift */,
 				9081C15D1C7BCE10007ACA5C /* DescriptionViewController.swift */,
@@ -371,6 +374,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				900270491C49606D00CB65E8 /* AutoCompleteTextField.swift in Sources */,
+				90D1758F1CBDECAE007FBBD6 /* OptionViewController.swift in Sources */,
 				9081C15E1C7BCE10007ACA5C /* DescriptionViewController.swift in Sources */,
 				90429A6F1C7CA6E800967EF3 /* PaymentViewController.swift in Sources */,
 				C244A88F1BF1732A000CF306 /* ViewController.swift in Sources */,

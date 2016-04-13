@@ -13,7 +13,7 @@ protocol AddToCartDelegate
     func addToCartResponse(addToCartArrayParam: [String], addPriceToCartArrayPram: [String])
 }
 
-class DescriptionViewController: UIViewController {
+class DescriptionViewController: UIViewController, UITextViewDelegate {
     
     @IBOutlet weak var descriptionTextView: UITextView!
     
@@ -25,6 +25,7 @@ class DescriptionViewController: UIViewController {
     
     var delegate: AddToCartDelegate?
     
+    @IBOutlet weak var specialRequest: UITextView!
     
     @IBOutlet weak var addToCartButton: UIButton!
     
@@ -32,11 +33,57 @@ class DescriptionViewController: UIViewController {
     var addToCartArray = [String]()
     var addPriceToCart = [String]()
     
+    var specialRequestArray: [String] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.specialRequest.delegate = self;
         addToCartButton.addTarget(self, action: "addToCart", forControlEvents: .TouchUpInside)
         
         descriptionTextView.text = itemName + "\r\n" + "\r\n" + descriptionString + "\r\n \r\nPrice: " + itemPrice
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        tapGesture.cancelsTouchesInView = false
+        self.view.addGestureRecognizer(tapGesture)
+    }
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?){
+        view.endEditing(true)
+        super.touchesBegan(touches, withEvent: event)
+    }
+    
+    
+    //Dismisses the keyboard
+    func textViewShouldEndEditing(textField: UITextView) -> Bool {
+        specialRequest.resignFirstResponder()
+        return true
+    }
+    
+    //Dismisses the keyboard 
+    func textViewShouldReturn(textField: UITextView) -> Bool {
+        self.view.endEditing(true)
+        //specialRequest.resignFirstResponder()
+        return false
+    }
+
+    
+    //Dismisses the keyboard
+    func dismissKeyboard(){
+        self.specialRequest.resignFirstResponder()
+    }
+    
+    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+        if(text == "\n") {
+            specialRequest.resignFirstResponder()
+            return false
+        }
+        return true
+    }
+    
+    func addSpecialRequest(){
+        for var index = 0; index < specialRequestArray.count; ++index{
+            specialRequestArray[index] = specialRequest.text
+        }
     }
     
     func addToCart() {
