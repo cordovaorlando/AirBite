@@ -24,6 +24,8 @@ class AccordionMenuTableViewController: UITableViewController, AddToCartDelegate
     
     var addPriceToCartArray: [String] = []
     
+    var addSpecialRequestToCart: [String] = []
+    
     var menuDescriptionItems = [[String]]()
     
     var menuPrice = [[String]]()
@@ -46,10 +48,11 @@ class AccordionMenuTableViewController: UITableViewController, AddToCartDelegate
     
     /// function that populates the add to cart array based on the menu items selected to add to the cart in the 
     /// DescirptionViewController
-    func addToCartResponse(addToCartArrayParam: [String], addPriceToCartArrayPram: [String])
+    func addToCartResponse(addToCartArrayParam: [String], addPriceToCartArrayPram: [String], addSpecialRequestArrayParam: [String])
     {
         self.addToCartArray += addToCartArrayParam
         self.addPriceToCartArray += addPriceToCartArrayPram
+        self.addSpecialRequestToCart += addSpecialRequestArrayParam
         
         let buttonTitle = "Cart (\(addToCartArray.count))"
         
@@ -394,6 +397,7 @@ class AccordionMenuTableViewController: UITableViewController, AddToCartDelegate
             addToCart.itemsInCart = addToCartArray
             addToCart.priceOfItemsInCart = addPriceToCartArray
             addToCart.restaurantsName = restaurantsName
+            addToCart.specialRequests = addSpecialRequestToCart
             
         }
     }

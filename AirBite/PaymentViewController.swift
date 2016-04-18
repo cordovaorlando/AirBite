@@ -89,6 +89,7 @@ class PaymentViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     var itemsInCart: [String] = []
     var priceOfItemsInCart: [String] = []
+    var specialRequests: [String] = []
     var intPriceItem = NSDecimalNumber()
     
     var priceOfItems = Float()
@@ -142,6 +143,8 @@ class PaymentViewController: UIViewController, UITableViewDelegate, UITableViewD
         stringPriceItem = convertFloatToString(priceOfItems)
         stringConvenienceFee = convertFloatToString(convenienceFee)
         stringTaxOfFood = convertFloatToString(taxOfFood)
+        
+        print(specialRequests)
 
         self.fruitPriceLabel.text = "Convenience Fee: $\(stringConvenienceFee) \r\nTax: $\(stringTaxOfFood) \r\nOrder Total: $\(stringPriceItem)"
         totalPrice = stringPriceItem
@@ -184,7 +187,18 @@ class PaymentViewController: UIViewController, UITableViewDelegate, UITableViewD
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell:UITableViewCell = self.tableViewSummary.dequeueReusableCellWithIdentifier("cell")! as UITableViewCell
         
-        cell.textLabel?.text = self.itemsInCart[indexPath.row] + ": $" + self.priceOfItemsInCart[indexPath.row]
+        // set up the special request string to add to the summary of items in each cell.
+        var specialRequestString = ""
+        
+        // only want to add a new line with special requests if there are special requests to add.
+        if (specialRequests[indexPath.row] != "") {
+            specialRequestString = "\r\n - \(specialRequests[indexPath.row])"
+        }
+        
+        // we want to set the number of lines to 0 so that we can have multiple lines of text in the table cells.
+        cell.textLabel?.numberOfLines = 0
+        
+        cell.textLabel?.text = self.itemsInCart[indexPath.row] + ": $" + self.priceOfItemsInCart[indexPath.row] + specialRequestString
         
         return cell
     }

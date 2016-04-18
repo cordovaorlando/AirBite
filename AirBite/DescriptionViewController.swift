@@ -10,7 +10,7 @@ import UIKit
 
 protocol AddToCartDelegate
 {
-    func addToCartResponse(addToCartArrayParam: [String], addPriceToCartArrayPram: [String])
+    func addToCartResponse(addToCartArrayParam: [String], addPriceToCartArrayPram: [String], addSpecialRequestArrayParam: [String])
 }
 
 class DescriptionViewController: UIViewController, UITextViewDelegate {
@@ -90,8 +90,9 @@ class DescriptionViewController: UIViewController, UITextViewDelegate {
         
         addToCartArray.append(itemName)
         addPriceToCart.append(itemPrice)
+        specialRequestArray.append(specialRequest.text)
         
-        self.delegate?.addToCartResponse(addToCartArray, addPriceToCartArrayPram: addPriceToCart)
+        self.delegate?.addToCartResponse(addToCartArray, addPriceToCartArrayPram: addPriceToCart, addSpecialRequestArrayParam: specialRequestArray)
         
         navigationController?.popViewControllerAnimated(true)
     }
