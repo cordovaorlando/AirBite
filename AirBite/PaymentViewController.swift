@@ -151,6 +151,9 @@ class PaymentViewController: UIViewController, UITableViewDelegate, UITableViewD
         print(specialRequests)
 
         self.fruitPriceLabel.text = "Convenience Fee: $\(stringConvenienceFee) \r\nTax: $\(stringTaxOfFood) \r\nOrder Total: $\(stringPriceItem)"
+        
+        self.fruitPriceLabel.font = UIFont(name: "Georgia", size: 18.0)
+        
         totalPrice = stringPriceItem
         
         
@@ -208,6 +211,9 @@ class PaymentViewController: UIViewController, UITableViewDelegate, UITableViewD
         cell.textLabel?.numberOfLines = 0
         
         cell.textLabel?.text = self.itemsInCart[indexPath.row] + ": $" + self.priceOfItemsInCart[indexPath.row] + specialRequestString
+        
+        cell.textLabel?.font = UIFont(name: "Georgia", size: 17.0)
+        
         
         return cell
     }

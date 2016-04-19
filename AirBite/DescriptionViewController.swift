@@ -42,6 +42,8 @@ class DescriptionViewController: UIViewController, UITextViewDelegate {
         
         descriptionTextView.text = itemName + "\r\n" + "\r\n" + descriptionString + "\r\n \r\nPrice: " + itemPrice
         
+        descriptionTextView.font = UIFont(name: "Georgia", size: 14.0)
+        
         let tapGesture = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
         tapGesture.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tapGesture)

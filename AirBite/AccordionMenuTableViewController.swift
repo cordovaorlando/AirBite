@@ -209,6 +209,8 @@ class AccordionMenuTableViewController: UITableViewController, AddToCartDelegate
             cell = tableView.dequeueReusableCellWithIdentifier(menuItemIdentifier, forIndexPath: indexPath) as UITableViewCell
             cell.textLabel!.text = self.menuItems[menuSection][indexPath.row - self.actualPositions[menuSection] - 1]
             //cell.backgroundColor = UIColor.greenColor()
+            cell.textLabel?.font = UIFont(name: "Georgia", size: 16.0)
+
             
         }
         else {
@@ -217,6 +219,7 @@ class AccordionMenuTableViewController: UITableViewController, AddToCartDelegate
             
             cell.textLabel!.text = self.menuSectionItems[topIndex]
             cell.detailTextLabel?.text = ""
+            cell.textLabel?.font = UIFont(name: "Georgia-BoldItalic", size: 18.0)
         }
         
         return cell

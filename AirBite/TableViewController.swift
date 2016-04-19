@@ -86,7 +86,18 @@ class TableViewController: UITableViewController {
         // return a value for each cell (text value) based on the values in the restuarnts array.
         cell.textLabel?.text = restaurantsName[indexPath.row] + "  (" + restaurantsGate[indexPath.row] + ")"
         
+        cell.textLabel?.font = UIFont(name: "Georgia-Bold", size: 15.0)
+        
         return cell
+    }
+    
+    override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int)
+    {
+        let title = UILabel()
+        title.font = UIFont(name: "Georgia-BoldItalic", size: 19.0)
+        
+        let header = view as! UITableViewHeaderFooterView
+        header.textLabel!.font = title.font
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
