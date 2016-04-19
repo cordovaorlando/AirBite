@@ -43,6 +43,10 @@ class ViewController: UIViewController, UITextFieldDelegate, NSURLConnectionData
     
     var deliverySelected = false
     
+    var airlineFieldText = String()
+    var flightNumberText = String()
+    var foodOption = String()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,6 +55,9 @@ class ViewController: UIViewController, UITextFieldDelegate, NSURLConnectionData
         if(deliverySelected == true){
             airlineField.hidden = false
             flightField.hidden = false
+            foodOption = "Delivery Order"
+        }else if(deliverySelected == false){
+            foodOption = "Pick Up Order"
         }
         
         print(deliverySelected)
@@ -164,20 +171,50 @@ class ViewController: UIViewController, UITextFieldDelegate, NSURLConnectionData
         let userInput = airportField.text
         
         
-        if(!(airportField.text?.isEmpty)! && airportField.text?.characters.count > 2){
-            
-        
-        //Saves only the airport code of each line in airport textfield.
-        let airportCode = userInput?.substringToIndex((userInput?.startIndex.advancedBy(3))!)
-        
-        let urlString = "https://api.locu.com/v1_0/venue/search/?has_menu=TRUE&locality=" + airportCode! + "&api_key=42c74053d1a1b2377c716af18da0b235d260be5b"
-  
-        //Connecting to the API
-        let url = NSURL(string: (urlString as NSString).stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
-        if url != nil{
-            let urlRequest = NSURLRequest(URL: url!)
-            self.connection = NSURLConnection(request: urlRequest, delegate: self)
+        if(deliverySelected == true){
+            if(!(airportField.text?.isEmpty)! && (airportField.text?.characters.count > 2) && (airlineField.text?.isEmpty == false) && (flightField.text?.isEmpty == false)){
+                
+                //if(airlineField.text!.isEmpty == false)
+                print("Not Empty")
+                
+                //Saves only the airport code of each line in airport textfield.
+                let airportCode = userInput?.substringToIndex((userInput?.startIndex.advancedBy(3))!)
+                
+                let urlString = "https://api.locu.com/v1_0/venue/search/?has_menu=TRUE&locality=" + airportCode! + "&api_key=42c74053d1a1b2377c716af18da0b235d260be5b"
+                
+                //Connecting to the API
+                let url = NSURL(string: (urlString as NSString).stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
+                if url != nil{
+                    let urlRequest = NSURLRequest(URL: url!)
+                    self.connection = NSURLConnection(request: urlRequest, delegate: self)
+                }
+                
+            }else{
+                let alertController = UIAlertController(title: "AirBite", message: "Please make sure all the fields are entered for delivering purposes. Thank You!", preferredStyle: UIAlertControllerStyle.Alert)
+                alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+                self.presentViewController(alertController, animated: true, completion: nil)
+                //print("Something is Wrong")
+            }
         }
+        
+        if (deliverySelected == false){
+            
+            if(!(airportField.text?.isEmpty)! && airportField.text?.characters.count > 2){
+                print("Not Empty")
+                
+                //Saves only the airport code of each line in airport textfield.
+                let airportCode = userInput?.substringToIndex((userInput?.startIndex.advancedBy(3))!)
+                
+                let urlString = "https://api.locu.com/v1_0/venue/search/?has_menu=TRUE&locality=" + airportCode! + "&api_key=42c74053d1a1b2377c716af18da0b235d260be5b"
+                
+                //Connecting to the API
+                let url = NSURL(string: (urlString as NSString).stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
+                if url != nil{
+                    let urlRequest = NSURLRequest(URL: url!)
+                    self.connection = NSURLConnection(request: urlRequest, delegate: self)
+                }
+            }
+            
         }
         
     }
@@ -365,6 +402,9 @@ class ViewController: UIViewController, UITextFieldDelegate, NSURLConnectionData
     //Sending the data returned in the outputLabel textview to dataPassed which is a string variable in TableViewController.swift
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         
+        airlineFieldText = airlineField.text!
+        flightNumberText = flightField.text!
+        
         if (segue.identifier == "btnSubmitSegue") {
             let svc = segue.destinationViewController as! TableViewController
             svc.restaurantsName = restaurantsName
@@ -373,6 +413,23 @@ class ViewController: UIViewController, UITextFieldDelegate, NSURLConnectionData
             airportCode = airportField.text!.substringToIndex((airportField.text!.startIndex.advancedBy(3)))
             svc.airportCode = airportCode
             airportField.text = ""
+            flightField.text = ""
+            airlineField.text = ""
+            svc.foodOption = foodOption
+            
+            if(airlineField.hidden == false){
+                svc.airlineFieldText = airlineFieldText
+                svc.flightNumberText = flightNumberText
+            }else if(airlineField.hidden){
+                airlineFieldText = "Pick Up Order"
+                flightNumberText = "Pick Up Order"
+                svc.airlineFieldText = airlineFieldText
+                svc.flightNumberText = flightNumberText
+            }
+
+            
+
+            
         }
     }
 }

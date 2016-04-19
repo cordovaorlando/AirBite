@@ -32,12 +32,19 @@ class TableViewController: UITableViewController {
     private var connection:NSURLConnection?
     
     var airportCode = String()
+    
+    var flightNumberText = String()
+    var airlineFieldText = String()
+    var foodOption = String()
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = airportCode
         
+        
+        print("flightNumber: " + flightNumberText)
+        print("airlineName: " + airlineFieldText)
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -189,6 +196,9 @@ class TableViewController: UITableViewController {
                         menuTableViewController.menuItemType = menuItemType
                         menuTableViewController.restaurantsID = restaurantsID[blogIndex]
                         menuTableViewController.restaurantsName = restaurantsName[blogIndex]
+                        menuTableViewController.airlineFieldText = airlineFieldText
+                        menuTableViewController.flightNumberText = flightNumberText
+                        menuTableViewController.foodOption = foodOption
                     }
                 }
             }

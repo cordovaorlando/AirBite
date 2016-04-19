@@ -41,6 +41,10 @@ class AccordionMenuTableViewController: UITableViewController, AddToCartDelegate
     
     var menuItemType: [AnyObject!] = []
     
+    var flightNumberText = String()
+    var airlineFieldText = String()
+    var foodOption = String()
+    
     
     @IBOutlet weak var addToCartButton: UIButton!
     
@@ -398,6 +402,9 @@ class AccordionMenuTableViewController: UITableViewController, AddToCartDelegate
             addToCart.priceOfItemsInCart = addPriceToCartArray
             addToCart.restaurantsName = restaurantsName
             addToCart.specialRequests = addSpecialRequestToCart
+            addToCart.airlineFieldText = airlineFieldText
+            addToCart.flightNumberText = flightNumberText
+            addToCart.foodOption = foodOption
             
         }
     }

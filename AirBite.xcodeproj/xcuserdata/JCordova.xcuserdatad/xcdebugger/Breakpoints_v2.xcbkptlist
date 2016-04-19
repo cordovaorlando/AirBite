@@ -103,11 +103,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AirBite/ViewController.swift"
-            timestampString = "482211763.489348"
+            timestampString = "482726062.835204"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "285"
-            endingLineNumber = "285"
+            startingLineNumber = "322"
+            endingLineNumber = "322"
             landmarkName = "connectionDidFinishLoading(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -167,11 +167,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AirBite/ViewController.swift"
-            timestampString = "482211763.489348"
+            timestampString = "482726062.835204"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "279"
-            endingLineNumber = "279"
+            startingLineNumber = "316"
+            endingLineNumber = "316"
             landmarkName = "connectionDidFinishLoading(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -183,11 +183,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AirBite/ViewController.swift"
-            timestampString = "482211763.489348"
+            timestampString = "482727795.740448"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "424"
-            endingLineNumber = "424">
+            startingLineNumber = "481"
+            endingLineNumber = "481">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
