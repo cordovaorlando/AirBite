@@ -37,8 +37,8 @@ class ViewController: UIViewController, UITextFieldDelegate, NSURLConnectionData
     
     //Airport API Url & Keys
     private var airportCode = ""
-    private let airportAppId = "c6ac21ce"
-    private let airportAppKey = "087e0cc4dfab24dde84d819bc91a3667"
+    private let airportAppId = "62f4c94a"
+    private let airportAppKey = "6fbc22413f0a4374608b91f2bbe46f08"
     private let airportURLString = "https://api.flightstats.com/flex/airports/rest/v1/json/iata/"
     
     var deliverySelected = false
@@ -70,7 +70,7 @@ class ViewController: UIViewController, UITextFieldDelegate, NSURLConnectionData
         self.airlineField.delegate = self;
         self.flightField.delegate = self;
         configureTextField()
-        //handleTextFieldInterfaces()
+        handleTextFieldInterfaces()
         let tapGesture = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
         tapGesture.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tapGesture)
@@ -239,26 +239,26 @@ class ViewController: UIViewController, UITextFieldDelegate, NSURLConnectionData
     }
     
     
-//     func handleTextFieldInterfaces(){
-//        airportField.onTextChange = {[weak self] text in
-//            if !text.isEmpty{
-//                if self!.connection != nil{
-//                    self!.connection!.cancel()
-//                    self!.connection = nil
-//                }
-//                
-//                let urlString = self!.airportURLString + text + "?appId=" + self!.airportAppId + "&appKey=" + self!.airportAppKey
-//        
-//                //Connecting to the API
-//                let url = NSURL(string: (urlString as NSString).stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
-//                
-//                if url != nil{
-//                    let urlRequest = NSURLRequest(URL: url!)
-//                    self!.connection = NSURLConnection(request: urlRequest, delegate: self)
-//                }
-//            }
-//        }
-//    }
+     func handleTextFieldInterfaces(){
+        airportField.onTextChange = {[weak self] text in
+            if !text.isEmpty{
+                if self!.connection != nil{
+                    self!.connection!.cancel()
+                    self!.connection = nil
+                }
+                
+                let urlString = self!.airportURLString + text + "?appId=" + self!.airportAppId + "&appKey=" + self!.airportAppKey
+        
+                //Connecting to the API
+                let url = NSURL(string: (urlString as NSString).stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
+                
+                if url != nil{
+                    let urlRequest = NSURLRequest(URL: url!)
+                    self!.connection = NSURLConnection(request: urlRequest, delegate: self)
+                }
+            }
+        }
+    }
     
     //API Connections
     func connection(connection: NSURLConnection, didReceiveResponse response: NSURLResponse) {
