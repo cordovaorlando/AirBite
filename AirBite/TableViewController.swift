@@ -31,6 +31,8 @@ class TableViewController: UITableViewController {
     // Load the contents of a URL by providing a URL request object
     private var connection:NSURLConnection?
     
+    var gateReplaced: [String] = []
+    
     var airportCode = String()
     
     var flightNumberText = String()
@@ -41,6 +43,11 @@ class TableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = airportCode
+        
+        
+        for var index = 0; index < restaurantsGate.count; ++index{
+            gateReplaced.append(restaurantsGate[index].stringByReplacingOccurrencesOfString("2334 N. International Pkwy.", withString: "Terminal D"))
+        }
         
         
         print("flightNumber: " + flightNumberText)
@@ -103,7 +110,7 @@ class TableViewController: UITableViewController {
 
         // Configure the cell...
         // return a value for each cell (text value) based on the values in the restuarnts array.
-        cell.textLabel?.text = restaurantsName[indexPath.row] + "  (" + restaurantsGate[indexPath.row] + ")"
+        cell.textLabel?.text = restaurantsName[indexPath.row] + "  (" + gateReplaced[indexPath.row] + ")"
         
         cell.textLabel?.font = UIFont(name: "Georgia", size: 16.0)
         //cell.backgroundColor = UIColor.cyanColor()

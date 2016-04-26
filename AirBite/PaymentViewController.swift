@@ -116,6 +116,8 @@ class PaymentViewController: UIViewController, UITableViewDelegate, UITableViewD
     var airlineFieldText = String()
     var foodOption = String()
     
+    var replaced: [String] = []
+    
     
     //Cards supported by ApplePay
     let SupportedPaymentNetworks = [PKPaymentNetworkVisa, PKPaymentNetworkMasterCard, PKPaymentNetworkAmex]
@@ -175,6 +177,17 @@ class PaymentViewController: UIViewController, UITableViewDelegate, UITableViewD
        // print(itemsInCart)
         
         //print(specialRequests)
+        
+        
+        //let str = "Swift 1.2 is the best version of Swift to learn, so if you're starting fresh you should definitely learn Swift 1.2."
+        //let replaced = str.stringByReplacingOccurrencesOfString("1.2", withString: "2.0")
+        
+        
+        for var index = 0; index < itemsInCart.count; ++index{
+            replaced.append(itemsInCart[index].stringByReplacingOccurrencesOfString("&", withString: "and"))
+        }
+        
+        print(replaced)
         
         
         print("flightNumber: " + flightNumberText)
@@ -315,7 +328,7 @@ class PaymentViewController: UIViewController, UITableViewDelegate, UITableViewD
         var rowData = String()
         for var index = 0; index < itemsInCart.count; ++index{
             
-            rowData = "<tr style=\"font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;\"><td style=\"font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; border-top-width: 1px; border-top-color: #eee; border-top-style: solid; margin: 0; padding: 5px 0;\" valign=\"top\">" + itemsInCart[index] + "</td><td class=\"alignright\" style=\"font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; text-align: right; border-top-width: 1px; border-top-color: #eee; border-top-style: solid; margin: 0; padding: 5px 0;\" align=\"right\" valign=\"top\">$ " + priceOfItemsInCart[index] + "</td></tr>" + rowData
+            rowData = "<tr style=\"font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;\"><td style=\"font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; border-top-width: 1px; border-top-color: #eee; border-top-style: solid; margin: 0; padding: 5px 0;\" valign=\"top\">" + replaced[index] + "</td><td class=\"alignright\" style=\"font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; text-align: right; border-top-width: 1px; border-top-color: #eee; border-top-style: solid; margin: 0; padding: 5px 0;\" align=\"right\" valign=\"top\">$ " + priceOfItemsInCart[index] + "</td></tr>" + rowData
         }
         
         //email header
@@ -383,7 +396,7 @@ class PaymentViewController: UIViewController, UITableViewDelegate, UITableViewD
         var rowData = String()
         for var index = 0; index < itemsInCart.count; ++index{
             
-            rowData = "<tr style=\"font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;\"><td style=\"font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; border-top-width: 1px; border-top-color: #eee; border-top-style: solid; margin: 0; padding: 5px 0;\" valign=\"top\">" + itemsInCart[index] + "<br>" + specialRequests[index] + "</td><td class=\"alignright\" style=\"font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; text-align: right; border-top-width: 1px; border-top-color: #eee; border-top-style: solid; margin: 0; padding: 5px 0;\" align=\"right\" valign=\"top\">$ " + priceOfItemsInCart[index] + "</td></tr>" + rowData
+            rowData = "<tr style=\"font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;\"><td style=\"font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; border-top-width: 1px; border-top-color: #eee; border-top-style: solid; margin: 0; padding: 5px 0;\" valign=\"top\">" + replaced[index] + "<br>" + specialRequests[index] + "</td><td class=\"alignright\" style=\"font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; text-align: right; border-top-width: 1px; border-top-color: #eee; border-top-style: solid; margin: 0; padding: 5px 0;\" align=\"right\" valign=\"top\">$ " + priceOfItemsInCart[index] + "</td></tr>" + rowData
         }
 
         
@@ -489,6 +502,7 @@ class PaymentViewController: UIViewController, UITableViewDelegate, UITableViewD
             svc.flightNumberText = flightNumberText
             svc.specialRequests = specialRequests
             svc.foodOption = foodOption
+            svc.replaced = replaced
         }
     }
 }
