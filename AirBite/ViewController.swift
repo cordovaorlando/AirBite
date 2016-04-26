@@ -70,11 +70,30 @@ class ViewController: UIViewController, UITextFieldDelegate, NSURLConnectionData
         self.airlineField.delegate = self;
         self.flightField.delegate = self;
         configureTextField()
-        handleTextFieldInterfaces()
+        //handleTextFieldInterfaces()
         let tapGesture = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
         tapGesture.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tapGesture)
+        
+        let mainScreenSize : CGSize = UIScreen.mainScreen().bounds.size // Getting main screen size of iPhone
+        
+        let imageObbj:UIImage! =   self.imageResize(UIImage(named: "CloudsAndLogoBackground.png")!, sizeChange: CGSizeMake(mainScreenSize.width, mainScreenSize.height))
+        
+        self.view.backgroundColor = UIColor(patternImage:imageObbj)
     }
+    
+    func imageResize (imageObj:UIImage, sizeChange:CGSize)-> UIImage{
+        
+        let hasAlpha = false
+        let scale: CGFloat = 0.0 // Automatically use scale factor of main screen
+        
+        UIGraphicsBeginImageContextWithOptions(sizeChange, !hasAlpha, scale)
+        imageObj.drawInRect(CGRect(origin: CGPointZero, size: sizeChange))
+        
+        let scaledImage = UIGraphicsGetImageFromCurrentImageContext()
+        return scaledImage
+    }
+
     
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
         
@@ -220,26 +239,26 @@ class ViewController: UIViewController, UITextFieldDelegate, NSURLConnectionData
     }
     
     
-     func handleTextFieldInterfaces(){
-        airportField.onTextChange = {[weak self] text in
-            if !text.isEmpty{
-                if self!.connection != nil{
-                    self!.connection!.cancel()
-                    self!.connection = nil
-                }
-                
-                let urlString = self!.airportURLString + text + "?appId=" + self!.airportAppId + "&appKey=" + self!.airportAppKey
-        
-                //Connecting to the API
-                let url = NSURL(string: (urlString as NSString).stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
-                
-                if url != nil{
-                    let urlRequest = NSURLRequest(URL: url!)
-                    self!.connection = NSURLConnection(request: urlRequest, delegate: self)
-                }
-            }
-        }
-    }
+//     func handleTextFieldInterfaces(){
+//        airportField.onTextChange = {[weak self] text in
+//            if !text.isEmpty{
+//                if self!.connection != nil{
+//                    self!.connection!.cancel()
+//                    self!.connection = nil
+//                }
+//                
+//                let urlString = self!.airportURLString + text + "?appId=" + self!.airportAppId + "&appKey=" + self!.airportAppKey
+//        
+//                //Connecting to the API
+//                let url = NSURL(string: (urlString as NSString).stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
+//                
+//                if url != nil{
+//                    let urlRequest = NSURLRequest(URL: url!)
+//                    self!.connection = NSURLConnection(request: urlRequest, delegate: self)
+//                }
+//            }
+//        }
+//    }
     
     //API Connections
     func connection(connection: NSURLConnection, didReceiveResponse response: NSURLResponse) {

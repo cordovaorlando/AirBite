@@ -47,6 +47,29 @@ class DescriptionViewController: UIViewController, UITextViewDelegate {
         let tapGesture = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
         tapGesture.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tapGesture)
+        
+        let mainScreenSize : CGSize = UIScreen.mainScreen().bounds.size // Getting main screen size of iPhone
+        
+        let imageObbj:UIImage! =   self.imageResize(UIImage(named: "BottomLogoNoClouds.png")!, sizeChange: CGSizeMake(mainScreenSize.width, mainScreenSize.height))
+        
+//        let imageObbj:UIImage! =   self.imageResize(UIImage(named: "PlainBackground.png")!, sizeChange: CGSizeMake(mainScreenSize.width, mainScreenSize.height))
+        
+        self.view.backgroundColor = UIColor(patternImage:imageObbj)
+        
+        addToCartButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
+       // addToCartButton.backgroundColor = UIColor.cyanColor()
+    }
+    
+    func imageResize (imageObj:UIImage, sizeChange:CGSize)-> UIImage{
+        
+        let hasAlpha = false
+        let scale: CGFloat = 0.0 // Automatically use scale factor of main screen
+        
+        UIGraphicsBeginImageContextWithOptions(sizeChange, !hasAlpha, scale)
+        imageObj.drawInRect(CGRect(origin: CGPointZero, size: sizeChange))
+        
+        let scaledImage = UIGraphicsGetImageFromCurrentImageContext()
+        return scaledImage
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?){

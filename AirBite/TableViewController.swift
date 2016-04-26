@@ -50,10 +50,29 @@ class TableViewController: UITableViewController {
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        let mainScreenSize : CGSize = UIScreen.mainScreen().bounds.size // Getting main screen size of iPhone
+        
+        let imageObbj:UIImage! =   self.imageResize(UIImage(named: "PlainBackground.png")!, sizeChange: CGSizeMake(mainScreenSize.width, mainScreenSize.height))
+        
+        self.tableView.backgroundColor = UIColor(patternImage:imageObbj)
+        
+    }
+    
+    func imageResize (imageObj:UIImage, sizeChange:CGSize)-> UIImage{
+        
+        let hasAlpha = false
+        let scale: CGFloat = 0.0 // Automatically use scale factor of main screen
+        
+        UIGraphicsBeginImageContextWithOptions(sizeChange, !hasAlpha, scale)
+        imageObj.drawInRect(CGRect(origin: CGPointZero, size: sizeChange))
+        
+        let scaledImage = UIGraphicsGetImageFromCurrentImageContext()
+        return scaledImage
     }
 
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -86,7 +105,12 @@ class TableViewController: UITableViewController {
         // return a value for each cell (text value) based on the values in the restuarnts array.
         cell.textLabel?.text = restaurantsName[indexPath.row] + "  (" + restaurantsGate[indexPath.row] + ")"
         
-        cell.textLabel?.font = UIFont(name: "Georgia-Bold", size: 15.0)
+        cell.textLabel?.font = UIFont(name: "Georgia", size: 16.0)
+        //cell.backgroundColor = UIColor.cyanColor()
+        cell.backgroundColor = UIColor(red: 135, green: 223, blue: 238, alpha: 0)
+        
+        
+        cell.textLabel?.textColor = UIColor.blackColor()
         
         return cell
     }

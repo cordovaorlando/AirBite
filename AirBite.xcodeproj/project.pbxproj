@@ -22,6 +22,9 @@
 		C244A8971BF1732A000CF306 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C244A8951BF1732A000CF306 /* LaunchScreen.storyboard */; };
 		C244A8A21BF1732A000CF306 /* AirBiteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C244A8A11BF1732A000CF306 /* AirBiteTests.swift */; };
 		C244A8AD1BF1732A000CF306 /* AirBiteUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C244A8AC1BF1732A000CF306 /* AirBiteUITests.swift */; };
+		C251AFE91CC8073700E26347 /* CloudsAndLogoBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = C251AFE81CC8073700E26347 /* CloudsAndLogoBackground.png */; };
+		C251AFED1CCF04B200E26347 /* PlainBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = C251AFEC1CCF04B200E26347 /* PlainBackground.png */; };
+		C2824F671CCF1B8C002AB93E /* BottomLogoNoClouds.png in Resources */ = {isa = PBXBuildFile; fileRef = C2824F661CCF1B8C002AB93E /* BottomLogoNoClouds.png */; };
 		C2B966BF1C84F7F40009BD1E /* AccordionMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B966BE1C84F7F40009BD1E /* AccordionMenuTableViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -68,6 +71,9 @@
 		C244A8A81BF1732A000CF306 /* AirBiteUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AirBiteUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C244A8AC1BF1732A000CF306 /* AirBiteUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirBiteUITests.swift; sourceTree = "<group>"; };
 		C244A8AE1BF1732A000CF306 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C251AFE81CC8073700E26347 /* CloudsAndLogoBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CloudsAndLogoBackground.png; sourceTree = "<group>"; };
+		C251AFEC1CCF04B200E26347 /* PlainBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlainBackground.png; sourceTree = "<group>"; };
+		C2824F661CCF1B8C002AB93E /* BottomLogoNoClouds.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BottomLogoNoClouds.png; sourceTree = "<group>"; };
 		C2B966BE1C84F7F40009BD1E /* AccordionMenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccordionMenuTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -148,6 +154,9 @@
 		C244A88B1BF1732A000CF306 /* AirBite */ = {
 			isa = PBXGroup;
 			children = (
+				C2824F661CCF1B8C002AB93E /* BottomLogoNoClouds.png */,
+				C251AFEC1CCF04B200E26347 /* PlainBackground.png */,
+				C251AFE81CC8073700E26347 /* CloudsAndLogoBackground.png */,
 				9081C15F1C7CA609007ACA5C /* AirBite.entitlements */,
 				C244A8901BF1732A000CF306 /* Main.storyboard */,
 				C244A88E1BF1732A000CF306 /* ViewController.swift */,
@@ -298,9 +307,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C251AFE91CC8073700E26347 /* CloudsAndLogoBackground.png in Resources */,
 				C244A8971BF1732A000CF306 /* LaunchScreen.storyboard in Resources */,
 				C244A8941BF1732A000CF306 /* Assets.xcassets in Resources */,
+				C2824F671CCF1B8C002AB93E /* BottomLogoNoClouds.png in Resources */,
 				C244A8921BF1732A000CF306 /* Main.storyboard in Resources */,
+				C251AFED1CCF04B200E26347 /* PlainBackground.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

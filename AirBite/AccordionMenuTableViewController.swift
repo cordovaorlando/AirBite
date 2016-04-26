@@ -61,6 +61,7 @@ class AccordionMenuTableViewController: UITableViewController, AddToCartDelegate
         let buttonTitle = "Cart (\(addToCartArray.count))"
         
         addToCartButton.setTitle(buttonTitle, forState: UIControlState.Normal)
+        addToCartButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
     }
     
     func removeFromCartResponse(removeFromCartArrayParam: [String], removePriceFromCartArrayPram: [String])
@@ -173,7 +174,28 @@ class AccordionMenuTableViewController: UITableViewController, AddToCartDelegate
         
         total = menuSectionItems.count
         
+        let mainScreenSize : CGSize = UIScreen.mainScreen().bounds.size // Getting main screen size of iPhone
+    
+        let imageObbj:UIImage! =   self.imageResize(UIImage(named: "PlainBackground.png")!, sizeChange: CGSizeMake(mainScreenSize.width, mainScreenSize.height))
+        
+        self.tableView.backgroundColor = UIColor(patternImage:imageObbj)
+        
+        addToCartButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
+        
     }
+    
+    func imageResize (imageObj:UIImage, sizeChange:CGSize)-> UIImage{
+        
+        let hasAlpha = false
+        let scale: CGFloat = 0.0 // Automatically use scale factor of main screen
+        
+        UIGraphicsBeginImageContextWithOptions(sizeChange, !hasAlpha, scale)
+        imageObj.drawInRect(CGRect(origin: CGPointZero, size: sizeChange))
+        
+        let scaledImage = UIGraphicsGetImageFromCurrentImageContext()
+        return scaledImage
+    }
+
     
     /// reloads the menu page after the back button is clicked.
     override func viewWillAppear(animated: Bool) {
@@ -208,7 +230,7 @@ class AccordionMenuTableViewController: UITableViewController, AddToCartDelegate
         if isMenuItem {
             cell = tableView.dequeueReusableCellWithIdentifier(menuItemIdentifier, forIndexPath: indexPath) as UITableViewCell
             cell.textLabel!.text = self.menuItems[menuSection][indexPath.row - self.actualPositions[menuSection] - 1]
-            //cell.backgroundColor = UIColor.greenColor()
+            
             cell.textLabel?.font = UIFont(name: "Georgia", size: 16.0)
 
             
@@ -221,6 +243,9 @@ class AccordionMenuTableViewController: UITableViewController, AddToCartDelegate
             cell.detailTextLabel?.text = ""
             cell.textLabel?.font = UIFont(name: "Georgia-BoldItalic", size: 18.0)
         }
+        
+        cell.backgroundColor = UIColor(red: 135, green: 223, blue: 238, alpha: 0)
+        cell.textLabel?.textColor = UIColor.blackColor()
         
         return cell
     }

@@ -188,6 +188,27 @@ class PaymentViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         // register the table view created since it's not a table view controller, just a table view inside the view controller.
         self.tableViewSummary.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableViewSummary.backgroundColor = UIColor(red: 135, green: 223, blue: 238, alpha: 0)
+        
+        let mainScreenSize : CGSize = UIScreen.mainScreen().bounds.size // Getting main screen size of iPhone
+        
+//        let imageObbj:UIImage! =   self.imageResize(UIImage(named: "BottomLogoNoClouds.png")!, sizeChange: CGSizeMake(mainScreenSize.width, mainScreenSize.height))
+        
+        let imageObbj:UIImage! =   self.imageResize(UIImage(named: "PlainBackground.png")!, sizeChange: CGSizeMake(mainScreenSize.width, mainScreenSize.height))
+        
+        self.view.backgroundColor = UIColor(patternImage:imageObbj)
+    }
+    
+    func imageResize (imageObj:UIImage, sizeChange:CGSize)-> UIImage{
+        
+        let hasAlpha = false
+        let scale: CGFloat = 0.0 // Automatically use scale factor of main screen
+        
+        UIGraphicsBeginImageContextWithOptions(sizeChange, !hasAlpha, scale)
+        imageObj.drawInRect(CGRect(origin: CGPointZero, size: sizeChange))
+        
+        let scaledImage = UIGraphicsGetImageFromCurrentImageContext()
+        return scaledImage
     }
     
     /// returns the number of rows in the table view cell based on the number of items in the cart.
@@ -214,6 +235,8 @@ class PaymentViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         cell.textLabel?.font = UIFont(name: "Georgia", size: 17.0)
         
+        cell.backgroundColor = UIColor(red: 135, green: 223, blue: 238, alpha: 0)
+        //cell.textLabel?.textColor = UIColor.whiteColor()
         
         return cell
     }

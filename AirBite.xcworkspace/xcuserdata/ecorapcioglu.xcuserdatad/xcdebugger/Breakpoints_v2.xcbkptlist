@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AirBite/PaymentViewController.swift"
-            timestampString = "482734170.366532"
+            timestampString = "483333616.429214"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "265"
-            endingLineNumber = "265"
+            startingLineNumber = "288"
+            endingLineNumber = "288"
             landmarkName = "tableView(_:commitEditingStyle:forRowAtIndexPath:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -90,11 +90,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AirBite/PaymentViewController.swift"
-            timestampString = "482734170.366532"
+            timestampString = "483333616.429214"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "244"
-            endingLineNumber = "244"
+            startingLineNumber = "267"
+            endingLineNumber = "267"
             landmarkName = "updatePrice(_:)"
             landmarkType = "5">
          </BreakpointContent>

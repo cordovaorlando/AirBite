@@ -14,15 +14,33 @@ class OptionViewController: UIViewController{
     @IBOutlet weak var deliveryButton: UIButton!
     var deliverySelected = false
     
+    @IBOutlet weak var orLabel: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+ 
+        let mainScreenSize : CGSize = UIScreen.mainScreen().bounds.size // Getting main screen size of iPhone
         
+        let imageObbj:UIImage! =   self.imageResize(UIImage(named: "CloudsAndLogoBackground.png")!, sizeChange: CGSizeMake(mainScreenSize.width, mainScreenSize.height))
         
-    
-
-
+        self.view.backgroundColor = UIColor(patternImage:imageObbj)
+        pickUpButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
+        deliveryButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
+        orLabel.textColor = UIColor.blackColor()
     }
+    
+    func imageResize (imageObj:UIImage, sizeChange:CGSize)-> UIImage{
+        
+        let hasAlpha = false
+        let scale: CGFloat = 0.0 // Automatically use scale factor of main screen
+        
+        UIGraphicsBeginImageContextWithOptions(sizeChange, !hasAlpha, scale)
+        imageObj.drawInRect(CGRect(origin: CGPointZero, size: sizeChange))
+        
+        let scaledImage = UIGraphicsGetImageFromCurrentImageContext()
+        return scaledImage
+    }
+
     
     @IBAction func pickUp(sender: UIButton) {
         
