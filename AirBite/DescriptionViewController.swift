@@ -50,14 +50,11 @@ class DescriptionViewController: UIViewController, UITextViewDelegate {
         
         let mainScreenSize : CGSize = UIScreen.mainScreen().bounds.size // Getting main screen size of iPhone
         
-//        let imageObbj:UIImage! =   self.imageResize(UIImage(named: "BottomLogoNoClouds.png")!, sizeChange: CGSizeMake(mainScreenSize.width, mainScreenSize.height))
-        
         let imageObbj:UIImage! =   self.imageResize(UIImage(named: "PlainBackground.png")!, sizeChange: CGSizeMake(mainScreenSize.width, mainScreenSize.height))
         
         self.view.backgroundColor = UIColor(patternImage:imageObbj)
         
         addToCartButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
-       // addToCartButton.backgroundColor = UIColor.cyanColor()
     }
     
     func imageResize (imageObj:UIImage, sizeChange:CGSize)-> UIImage{

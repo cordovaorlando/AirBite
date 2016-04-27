@@ -117,10 +117,31 @@ class CustomPaymentViewController: UITableViewController,UITextFieldDelegate {
         
         
         
-
+        let mainScreenSize : CGSize = UIScreen.mainScreen().bounds.size // Getting main screen size of iPhone
+        
+        let imageObbj:UIImage! =   self.imageResize(UIImage(named: "BottomLogoNoClouds.png")!, sizeChange: CGSizeMake(mainScreenSize.width, mainScreenSize.height))
+        
+        self.view.backgroundColor = UIColor(patternImage:imageObbj)
+        
+        emailTextField.font = UIFont(name: "Georgia", size: 16.0)
+        cardNumberTextField.font = UIFont(name: "Georgia", size: 16.0)
+        expireDateTextField.font = UIFont(name: "Georgia", size: 16.0)
+        cvcTextField.font = UIFont(name: "Georgia", size: 16.0)
+        amountTextField.font = UIFont(name: "Georgia-Bold", size: 18.0)
         
     }
 
+    func imageResize (imageObj:UIImage, sizeChange:CGSize)-> UIImage{
+        
+        let hasAlpha = false
+        let scale: CGFloat = 0.0 // Automatically use scale factor of main screen
+        
+        UIGraphicsBeginImageContextWithOptions(sizeChange, !hasAlpha, scale)
+        imageObj.drawInRect(CGRect(origin: CGPointZero, size: sizeChange))
+        
+        let scaledImage = UIGraphicsGetImageFromCurrentImageContext()
+        return scaledImage
+    }
     
     // MARK: - Text field delegate
     

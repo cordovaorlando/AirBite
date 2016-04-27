@@ -359,13 +359,17 @@
                             <outlet property="delegate" destination="nzE-iT-vJu" id="3gf-wH-3q0"/>
                         </connections>
                     </tableView>
+                    <toolbarItems>
+                        <barButtonItem title="Item" id="jZr-7M-fsq"/>
+                    </toolbarItems>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="addToCartButton" destination="6mo-MS-ytS" id="IZm-3X-1aU"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Unf-I4-4Nl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5287" y="-126"/>
+            <point key="canvasLocation" x="5290" y="-217"/>
         </scene>
         <!--Payment View Controller-->
         <scene sceneID="h2N-r3-ZsG">
@@ -620,6 +624,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="jp4-L6-crs"/>
-        <segue reference="PpA-YU-enM"/>
+        <segue reference="1pa-mJ-01a"/>
     </inferredMetricsTieBreakers>
 </document>
