@@ -380,7 +380,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nCN-GE-ANc">
-                                <rect key="frame" x="25" y="526" width="135" height="40"/>
+                                <rect key="frame" x="65" y="526" width="135" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="135" id="cvx-3s-Q8L"/>
                                     <constraint firstAttribute="height" constant="40" id="mfn-Do-qIS"/>
@@ -391,7 +391,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Naa-2W-B0c">
-                                <rect key="frame" x="168" y="526" width="135" height="40"/>
+                                <rect key="frame" x="208" y="526" width="135" height="40"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="135" id="MFo-tR-8hM"/>
@@ -404,12 +404,12 @@
                                     <segue destination="3v4-XC-rjs" kind="show" identifier="customPaymentSegue" id="yzd-3r-wmx"/>
                                 </connections>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CpF-fs-40G">
-                                <rect key="frame" x="0.0" y="72" width="369" height="151"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CpF-fs-40G">
+                                <rect key="frame" x="20" y="72" width="369" height="246"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="369" id="Ohe-Po-HnC"/>
-                                    <constraint firstAttribute="height" constant="151" id="bnG-at-nhs"/>
+                                    <constraint firstAttribute="height" constant="246" id="bnG-at-nhs"/>
                                 </constraints>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="6" y="69" width="409" height="221"/>
@@ -419,11 +419,11 @@
                                     <outlet property="delegate" destination="ysZ-Lp-gkP" id="qdT-Uy-vBW"/>
                                 </connections>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oe4-Mk-EaL">
-                                <rect key="frame" x="0.0" y="242" width="268" height="198"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oe4-Mk-EaL">
+                                <rect key="frame" x="20" y="371" width="369" height="108"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="268" id="0Gp-hX-288"/>
-                                    <constraint firstAttribute="height" constant="198" id="BGu-c9-oBO"/>
+                                    <constraint firstAttribute="width" constant="369" id="0Gp-hX-288"/>
+                                    <constraint firstAttribute="height" constant="108" id="BGu-c9-oBO"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -432,10 +432,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="nCN-GE-ANc" firstAttribute="top" secondItem="Oe4-Mk-EaL" secondAttribute="bottom" constant="86" id="Eln-kU-l0Q"/>
-                            <constraint firstItem="Naa-2W-B0c" firstAttribute="top" secondItem="Oe4-Mk-EaL" secondAttribute="bottom" constant="86" id="LZM-Fu-L6G"/>
+                            <constraint firstItem="nCN-GE-ANc" firstAttribute="top" secondItem="Oe4-Mk-EaL" secondAttribute="bottom" constant="47" id="Eln-kU-l0Q"/>
+                            <constraint firstItem="Naa-2W-B0c" firstAttribute="top" secondItem="Oe4-Mk-EaL" secondAttribute="bottom" constant="47" id="LZM-Fu-L6G"/>
                             <constraint firstItem="Naa-2W-B0c" firstAttribute="leading" secondItem="nCN-GE-ANc" secondAttribute="trailing" constant="8" id="Mr6-3f-DV3"/>
-                            <constraint firstItem="Oe4-Mk-EaL" firstAttribute="top" secondItem="CpF-fs-40G" secondAttribute="bottom" constant="19" id="PaC-xx-Zrx"/>
+                            <constraint firstItem="Oe4-Mk-EaL" firstAttribute="top" secondItem="CpF-fs-40G" secondAttribute="bottom" constant="53" id="PaC-xx-Zrx"/>
                             <constraint firstItem="CpF-fs-40G" firstAttribute="top" secondItem="uIx-H8-A5O" secondAttribute="bottom" constant="8" symbolic="YES" id="eY9-xT-3Zc"/>
                         </constraints>
                     </view>
