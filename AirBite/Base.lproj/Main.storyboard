@@ -162,7 +162,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hbK-8f-DRB">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hbK-8f-DRB">
                                 <rect key="frame" x="276" y="519" width="49" height="30"/>
                                 <state key="normal" title="Submit"/>
                                 <connections>
@@ -198,10 +198,14 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cPW-NV-Dna">
-                                <rect key="frame" x="252" y="419" width="95" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cPW-NV-Dna">
+                                <rect key="frame" x="179" y="419" width="243" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="a2Z-34-IUl"/>
+                                    <constraint firstAttribute="width" constant="243" id="lDb-Ie-goh"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="Georgia-Bold" family="Georgia" pointSize="16"/>
-                                <state key="normal" title="Add to Cart">
+                                <state key="normal" title="Add to Cart" backgroundImage="SolidWhiteCloud.png">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                             </button>
@@ -211,14 +215,14 @@
                             <constraint firstItem="wAZ-gb-7S5" firstAttribute="top" secondItem="8ce-jj-OTe" secondAttribute="bottom" constant="32" id="8Kx-NP-Kzh"/>
                             <constraint firstItem="hbK-8f-DRB" firstAttribute="centerX" secondItem="2lh-i3-G4Z" secondAttribute="centerX" id="CkL-Tn-mlo"/>
                             <constraint firstItem="OVE-fB-hLl" firstAttribute="top" secondItem="wAZ-gb-7S5" secondAttribute="bottom" constant="15" id="DT2-nS-llS"/>
-                            <constraint firstItem="cPW-NV-Dna" firstAttribute="centerX" secondItem="2lh-i3-G4Z" secondAttribute="centerX" constant="-0.5" id="Dqv-2T-5YU"/>
+                            <constraint firstItem="cPW-NV-Dna" firstAttribute="centerX" secondItem="2lh-i3-G4Z" secondAttribute="centerX" constant="0.5" id="RE9-dQ-iLc"/>
                             <constraint firstItem="zTl-oh-mvQ" firstAttribute="top" secondItem="OVE-fB-hLl" secondAttribute="bottom" constant="52" id="YYz-LF-Axh"/>
                             <constraint firstItem="ObL-5u-JXy" firstAttribute="top" secondItem="OVE-fB-hLl" secondAttribute="bottom" constant="29" id="axf-St-gIT"/>
-                            <constraint firstItem="hbK-8f-DRB" firstAttribute="top" secondItem="cPW-NV-Dna" secondAttribute="bottom" constant="70" id="ifb-AF-2GJ"/>
+                            <constraint firstItem="hbK-8f-DRB" firstAttribute="top" secondItem="cPW-NV-Dna" secondAttribute="bottom" constant="60" id="eOf-Ld-aXB"/>
                             <constraint firstItem="zTl-oh-mvQ" firstAttribute="centerX" secondItem="2lh-i3-G4Z" secondAttribute="centerX" id="jXe-W7-BhK"/>
                             <constraint firstItem="wAZ-gb-7S5" firstAttribute="centerX" secondItem="2lh-i3-G4Z" secondAttribute="centerX" id="kRl-FC-8is"/>
-                            <constraint firstItem="cPW-NV-Dna" firstAttribute="top" secondItem="OVE-fB-hLl" secondAttribute="bottom" constant="159" id="lNF-Oe-OQP"/>
                             <constraint firstItem="ObL-5u-JXy" firstAttribute="centerX" secondItem="2lh-i3-G4Z" secondAttribute="centerX" constant="-7" id="m8l-BR-TEW"/>
+                            <constraint firstItem="cPW-NV-Dna" firstAttribute="top" secondItem="zTl-oh-mvQ" secondAttribute="bottom" constant="38" id="paI-CP-N6W"/>
                             <constraint firstItem="OVE-fB-hLl" firstAttribute="centerX" secondItem="2lh-i3-G4Z" secondAttribute="centerX" id="tle-Zf-bOf"/>
                         </constraints>
                     </view>
