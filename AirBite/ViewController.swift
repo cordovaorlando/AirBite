@@ -28,6 +28,7 @@ class ViewController: UIViewController, UITextFieldDelegate, NSURLConnectionData
     // Load the contents of a URL by providing a URL request object
     private var connection:NSURLConnection?
     
+    @IBOutlet weak var searchButton: UIButton!
     private var manager = CLLocationManager()
     private var latitude = String()
     private var longitude = String()
@@ -80,6 +81,9 @@ class ViewController: UIViewController, UITextFieldDelegate, NSURLConnectionData
         let imageObbj:UIImage! =   self.imageResize(UIImage(named: "CloudsAndLogoBackground.png")!, sizeChange: CGSizeMake(mainScreenSize.width, mainScreenSize.height))
         
         self.view.backgroundColor = UIColor(patternImage:imageObbj)
+        
+//        let image = UIImage(named: "SolidWhiteCloud.png") as UIImage?
+//        searchButton.setImage(image, forState: .Normal)
     }
     
     func imageResize (imageObj:UIImage, sizeChange:CGSize)-> UIImage{

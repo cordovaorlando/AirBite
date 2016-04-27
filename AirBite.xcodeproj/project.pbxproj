@@ -26,6 +26,10 @@
 		C251AFED1CCF04B200E26347 /* PlainBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = C251AFEC1CCF04B200E26347 /* PlainBackground.png */; };
 		C2824F671CCF1B8C002AB93E /* BottomLogoNoClouds.png in Resources */ = {isa = PBXBuildFile; fileRef = C2824F661CCF1B8C002AB93E /* BottomLogoNoClouds.png */; };
 		C2B966BF1C84F7F40009BD1E /* AccordionMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B966BE1C84F7F40009BD1E /* AccordionMenuTableViewController.swift */; };
+		D30A4FDE1CD0605200C6B1A6 /* ShoppingCartIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = D30A4FDB1CD0605200C6B1A6 /* ShoppingCartIcon.png */; };
+		D30A4FDF1CD0605200C6B1A6 /* SolidWhiteCloud.png in Resources */ = {isa = PBXBuildFile; fileRef = D30A4FDC1CD0605200C6B1A6 /* SolidWhiteCloud.png */; };
+		D30A4FE11CD060D600C6B1A6 /* RightTopPlainLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = D30A4FE01CD060D600C6B1A6 /* RightTopPlainLogo.png */; };
+		D30A4FE31CD0616400C6B1A6 /* LeftTopPlainLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = D30A4FE21CD0616400C6B1A6 /* LeftTopPlainLogo.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +79,10 @@
 		C251AFEC1CCF04B200E26347 /* PlainBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlainBackground.png; sourceTree = "<group>"; };
 		C2824F661CCF1B8C002AB93E /* BottomLogoNoClouds.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BottomLogoNoClouds.png; sourceTree = "<group>"; };
 		C2B966BE1C84F7F40009BD1E /* AccordionMenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccordionMenuTableViewController.swift; sourceTree = "<group>"; };
+		D30A4FDB1CD0605200C6B1A6 /* ShoppingCartIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ShoppingCartIcon.png; sourceTree = "<group>"; };
+		D30A4FDC1CD0605200C6B1A6 /* SolidWhiteCloud.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SolidWhiteCloud.png; sourceTree = "<group>"; };
+		D30A4FE01CD060D600C6B1A6 /* RightTopPlainLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RightTopPlainLogo.png; sourceTree = "<group>"; };
+		D30A4FE21CD0616400C6B1A6 /* LeftTopPlainLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LeftTopPlainLogo.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +162,10 @@
 		C244A88B1BF1732A000CF306 /* AirBite */ = {
 			isa = PBXGroup;
 			children = (
+				D30A4FE21CD0616400C6B1A6 /* LeftTopPlainLogo.png */,
+				D30A4FE01CD060D600C6B1A6 /* RightTopPlainLogo.png */,
+				D30A4FDB1CD0605200C6B1A6 /* ShoppingCartIcon.png */,
+				D30A4FDC1CD0605200C6B1A6 /* SolidWhiteCloud.png */,
 				C2824F661CCF1B8C002AB93E /* BottomLogoNoClouds.png */,
 				C251AFEC1CCF04B200E26347 /* PlainBackground.png */,
 				C251AFE81CC8073700E26347 /* CloudsAndLogoBackground.png */,
@@ -308,9 +320,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				C251AFE91CC8073700E26347 /* CloudsAndLogoBackground.png in Resources */,
+				D30A4FDE1CD0605200C6B1A6 /* ShoppingCartIcon.png in Resources */,
+				D30A4FDF1CD0605200C6B1A6 /* SolidWhiteCloud.png in Resources */,
 				C244A8971BF1732A000CF306 /* LaunchScreen.storyboard in Resources */,
+				D30A4FE31CD0616400C6B1A6 /* LeftTopPlainLogo.png in Resources */,
 				C244A8941BF1732A000CF306 /* Assets.xcassets in Resources */,
 				C2824F671CCF1B8C002AB93E /* BottomLogoNoClouds.png in Resources */,
+				D30A4FE11CD060D600C6B1A6 /* RightTopPlainLogo.png in Resources */,
 				C244A8921BF1732A000CF306 /* Main.storyboard in Resources */,
 				C251AFED1CCF04B200E26347 /* PlainBackground.png in Resources */,
 			);
@@ -546,7 +562,7 @@
 				INFOPLIST_FILE = AirBite/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = LSUS.AirBiteApp;
+				PRODUCT_BUNDLE_IDENTIFIER = LSUS.AirBiteApp3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "AirBite/AirBite-Bridging-Header.h";
@@ -570,7 +586,7 @@
 				INFOPLIST_FILE = AirBite/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = LSUS.AirBiteApp;
+				PRODUCT_BUNDLE_IDENTIFIER = LSUS.AirBiteApp3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "AirBite/AirBite-Bridging-Header.h";

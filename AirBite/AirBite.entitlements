@@ -5,6 +5,8 @@
 	<key>com.apple.developer.in-app-payments</key>
 	<array>
 		<string>merchant.com.LSUS.AirBite</string>
+		<string>merchant.LSUS.AirBite2</string>
+		<string>merchant.com.LSUS.AirBiteApp</string>
 	</array>
 </dict>
 </plist>

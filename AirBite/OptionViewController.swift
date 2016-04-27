@@ -21,7 +21,11 @@ class OptionViewController: UIViewController{
  
         let mainScreenSize : CGSize = UIScreen.mainScreen().bounds.size // Getting main screen size of iPhone
         
-        let imageObbj:UIImage! =   self.imageResize(UIImage(named: "CloudsAndLogoBackground.png")!, sizeChange: CGSizeMake(mainScreenSize.width, mainScreenSize.height))
+//        let imageObbj:UIImage! =   self.imageResize(UIImage(named: "CloudsAndLogoBackground.png")!, sizeChange: CGSizeMake(mainScreenSize.width, mainScreenSize.height))
+
+        let imageObbj:UIImage! =   self.imageResize(UIImage(named: "LeftTopPlainLogo.png")!, sizeChange: CGSizeMake(mainScreenSize.width, mainScreenSize.height))
+        
+        
         
         self.view.backgroundColor = UIColor(patternImage:imageObbj)
         pickUpButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
