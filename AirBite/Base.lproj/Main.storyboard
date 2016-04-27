@@ -46,12 +46,11 @@
                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="headTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QUO-Bs-JY3">
-                                <rect key="frame" x="171" y="416" width="266" height="30"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="171" y="416" width="266" height="56"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="266" id="Dgc-oZ-cOF"/>
+                                    <constraint firstAttribute="height" constant="56" id="IhS-Zv-GjF"/>
                                 </constraints>
-                                <state key="normal" title="Search">
+                                <state key="normal" title="Search" backgroundImage="SolidWhiteCloud.png">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -80,15 +79,16 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="QUO-Bs-JY3" firstAttribute="trailing" secondItem="Qqf-xE-mgQ" secondAttribute="trailing" id="4XN-0e-31h"/>
                             <constraint firstItem="ELq-Qt-8ja" firstAttribute="leading" secondItem="ePi-82-gfw" secondAttribute="trailing" constant="8" id="B0c-Pt-Jac"/>
                             <constraint firstItem="Qqf-xE-mgQ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="4" id="Iud-lc-onc"/>
                             <constraint firstItem="8nj-Jv-GdS" firstAttribute="centerX" secondItem="ELq-Qt-8ja" secondAttribute="centerX" constant="-21" id="Qpx-FE-W73"/>
+                            <constraint firstItem="QUO-Bs-JY3" firstAttribute="leading" secondItem="Qqf-xE-mgQ" secondAttribute="leading" id="RHu-AN-BvS"/>
                             <constraint firstItem="8nj-Jv-GdS" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="142" id="Sn2-dx-dup"/>
+                            <constraint firstItem="QUO-Bs-JY3" firstAttribute="top" secondItem="Qqf-xE-mgQ" secondAttribute="bottom" constant="19" id="Unk-u7-XSE"/>
                             <constraint firstItem="ELq-Qt-8ja" firstAttribute="top" secondItem="8nj-Jv-GdS" secondAttribute="bottom" constant="52" id="bkZ-xc-lOW"/>
-                            <constraint firstItem="QUO-Bs-JY3" firstAttribute="top" secondItem="Qqf-xE-mgQ" secondAttribute="bottom" constant="19" id="cLo-wL-zEn"/>
                             <constraint firstItem="CvO-1z-Id7" firstAttribute="top" secondItem="ELq-Qt-8ja" secondAttribute="bottom" constant="8" id="eBN-MU-rNk"/>
                             <constraint firstItem="Qqf-xE-mgQ" firstAttribute="top" secondItem="CvO-1z-Id7" secondAttribute="bottom" constant="8" id="gUa-ed-LZU"/>
-                            <constraint firstItem="QUO-Bs-JY3" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="4" id="gba-0M-MOp"/>
                             <constraint firstItem="ELq-Qt-8ja" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="4" id="stl-zc-d21"/>
                             <constraint firstItem="CvO-1z-Id7" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="4" id="vYT-tz-tR9"/>
                         </constraints>
