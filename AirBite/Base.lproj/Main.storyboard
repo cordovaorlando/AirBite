@@ -45,18 +45,6 @@
                                 <fontDescription key="fontDescription" name=".HelveticaNeueDeskInterface-Regular" family=".Helvetica Neue DeskInterface" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="headTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QUO-Bs-JY3">
-                                <rect key="frame" x="171" y="416" width="266" height="56"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="56" id="IhS-Zv-GjF"/>
-                                </constraints>
-                                <state key="normal" title="Search" backgroundImage="SolidWhiteCloud.png">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="buttonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qeP-7q-4qG"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ePi-82-gfw">
                                 <rect key="frame" x="130" y="291" width="33" height="35"/>
                                 <constraints>
@@ -76,6 +64,19 @@
                                 <fontDescription key="fontDescription" name="Georgia-BoldItalic" family="Georgia" pointSize="28"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="headTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QUO-Bs-JY3">
+                                <rect key="frame" x="171" y="416" width="266" height="56"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="IhS-Zv-GjF"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Georgia-Bold" family="Georgia" pointSize="15"/>
+                                <state key="normal" title="Search" backgroundImage="SolidWhiteCloud.png">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="buttonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qeP-7q-4qG"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
